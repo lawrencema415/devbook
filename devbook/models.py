@@ -21,6 +21,6 @@ class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_like')
 
 
-    class Profile(models.Model):
-        image = models.ImageField(upload_to = 'pic_folder/', default = 'pic_folder/None/no-img.jpg')
+class Profile(models.Model):
+    image = models.ImageField(upload_to = 'pic_folder/', default = 'pic_folder/None/no-img.jpg')
     
