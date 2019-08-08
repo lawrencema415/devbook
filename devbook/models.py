@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
-from accounts.models import UserProfile
 # Create your models here.
 class Post(models.Model):
     body = models.TextField(default='')
@@ -25,12 +24,12 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     """do we want to CASCADE on delete?"""
     follows = models.ManyToManyField('self', related_name='followed_by', symmetrical=False)
-    image = models.ImageField(upload_to = 'pic_folder/', default = 'pic_folder/None/no-img.jpg')
+    #image = models.ImageField(upload_to = 'pic_folder/', default = 'pic_folder/None/no-img.jpg')
 
 #based on Max Goodridge's youtube tutorial Part 56
 class Friend(models.Model):
     users = models.ManyToManyField(User)
-    current_user = models.ForeignKey(User, related_name='owner', null=True)
+    current_user = models.ForeignKey(User, related_name='owner', null=True, on_delete=models.DO_NOTHING)
 
     @classmethod
     def befriend(cls, current_user, new_friend):
