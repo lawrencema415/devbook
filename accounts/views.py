@@ -13,6 +13,7 @@ def register(request):
         password = request.POST['password']
         password2 = request.POST['password2']
         birthday = request.POST['birthday']
+        gender = request.POST['gender']
         # check if the passwords match
         if password == password2:
         # check if user exists with that email
@@ -20,7 +21,7 @@ def register(request):
                     return render(request, 'register.html', {'error': 'Email already exists. Please Log in.'})
         # if everything is okay Create a User
             else:
-                    user = User.objects.create_user(password=password, email=email, first_name=first_name, last_name=last_name, birthdat=birthday)   
+                    user = User.objects.create_user(password=password, email=email, first_name=first_name, last_name=last_name, birthdat=birthday, gender=gender)   
                     user.save()
                     return redirect('login')
         else:
