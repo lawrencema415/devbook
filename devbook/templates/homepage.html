@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<form class="" action="{% url 'post_body'%}" method="post" style="margin-top: 7%;text-align:center">
+<form class="" action="{% url 'post_body' %}" method="post" style="margin-top: 7%;text-align:center">
   {% csrf_token%}
   {{form.as_p}}
   <button type="submit" name="button">Post</button>
@@ -9,5 +9,18 @@
   {% for post in posts%}
   <p>{{post.body}}</p>
   <p>{{post.time_posted}}</p>
+  <p>comment</p>
+  {% for comment in comments%}
+  {% if post == comment.post %}
+  <p>{{comment.body}} - {{comment.user}}</p>
+  <p>{{comment.time_posted}}</p>
+  {% endif %}
+  {% endfor %}
+  <form class="" action="{% url 'post_comment' pk=post.pk %}" method="post">
+    {% csrf_token%}
+    {{commentForm.as_p}}
+    <button type="submit" name="button">Comment</button>
+  </form>
+
   {% endfor %}
 {% endblock %}
