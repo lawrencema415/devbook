@@ -9,21 +9,23 @@ def register(request):
         # get form information
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
+        username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
         password2 = request.POST['password2']
-        birthday = request.POST['birthday']
-        gender = request.POST['gender']
         # check if the passwords match
         if password == password2:
+            if User.objects.filter(username=username).exists():
+                return render(request, 'register.html', {'error': 'Username is already taken.'})
         # check if user exists with that email
-            if User.objects.filter(email=email).exists():
-                    return render(request, 'register.html', {'error': 'Email already exists. Please Log in.'})
-        # if everything is okay Create a User
             else:
-                    user = User.objects.create_user(password=password, email=email, first_name=first_name, last_name=last_name, birthdat=birthday, gender=gender)   
+                if User.objects.filter(email=email).exists():
+                        return render(request, 'register.html', {'error': 'Email already exists. Please Log in.'})
+        # if everything is okay Create a User
+                else:
+                    user = User.objects.create_user(username=username, password=password, email=email, first_name=first_name, last_name=last_name)   
                     user.save()
-                    return redirect('login')
+                    return redirect('homepage')
         else:
             return render(request, 'register.html', {'error': 'Passwords do not match.'})
     # else
@@ -34,24 +36,27 @@ def register(request):
 def login(request):
     # if POST 
     if request.method == 'POST':
-        email = request.POST['email']
+        username = request.POST['username']
         password = request.POST['password']
         # GET form info
         # authenticate user
-        user = auth.authenticate(email=email, password=password)
+        user = auth.authenticate(username=username, password=password)
+        print("I am in login")
         # make sure a user exists
         if user is not None:
             # login
             auth.login(request, user)
+            print("test, did I actually log in???")
             # redirect
-            return redirect('profile')
+            return redirect('homepage')
         # else return not found
         else:
-            return render(request, 'login.html', {'error': 'Invalid Credentials'})
+            print("I failed to login")
+            return render(request, 'register.html', {'error': 'Invalid Credentials'})
         
     # else send form
     else:
-        return render(request, 'login.html')
+        return render(request, 'register.html')
     
 def logout(request):
     auth.logout(request);

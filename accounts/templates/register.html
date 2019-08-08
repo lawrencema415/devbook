@@ -14,7 +14,7 @@
         <h1> DEVBOOK </h1>
       <ul class="navbar-nav mr-auto">
 			<section class="form-section">
-        <form action="{% url 'login' %}" method="POST" class="artist-form">
+        <form action="{% url 'login' %}" method="POST" class="login-form">
         {% csrf_token %}
         <p>
             <label for="username">Username</label>
@@ -41,7 +41,7 @@
     <section class="form-section" style="margin-top: 20%;">
     <h1> Create A New Account </h1>
     <h2> It's Fast and Friendly </h2>
-        <form action="{% url 'register' %}" method="POST" class="artist-form">
+        <form action="{% url 'register' %}" method="POST" class="register-form">
             {% csrf_token %}
             <p>
                 <label for="first_name">First Name</label>
@@ -50,6 +50,10 @@
             <p>
                 <label for="last_name">Last Name</label>
                 <input type="text" name="last_name" required maxlength="25" minlength="2">
+            </p>
+            <p>
+                <label for="username">Username</label>
+                <input type="text" name="username" required maxlength="25" minlength="2">
             </p>
             <p>
                 <label for="email">Email</label>
@@ -62,15 +66,6 @@
             <p>
                 <label for="password2">Confirm Password</label>
                 <input type="password" name="password2" required maxlength="25" minlength="4">
-            </p>
-            <p>
-                <label for="birthday">Date of Birth</label>
-                <input id="startdate" name="birthday" min="1905-01-01" max="2000-01-01" type="date">
-            </p>
-            <p>
-            <input type="radio" name="gender" value="male" checked> Male<br>
-            <input type="radio" name="gender" value="female"> Female<br>
-            <input type="radio" name="gender" value="other"> Other<br>
             </p>
             <button type="submit">Register</button>
         </form>
