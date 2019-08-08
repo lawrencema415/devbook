@@ -10,12 +10,12 @@ class Post(models.Model):
 
 class Comment(models.Model):
     body: models.TextField()
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='origin_post')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='origin_user')
     time_posted = models.DateTimeField(default=datetime.now())
 
 
 class Like(models.Model):
     liked: models.BooleanField(default=False)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_liked')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_like')
