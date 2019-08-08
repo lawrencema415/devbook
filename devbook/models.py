@@ -27,7 +27,17 @@ class Profile(models.Model):
     follows = models.ManyToManyField('self', related_name='followed_by', symmetrical=False)
     image = models.ImageField(upload_to = 'pic_folder/', default = 'pic_folder/None/no-img.jpg')
 
+#based on Max Goodridge's youtube tutorial Part 56
 class Friend(models.Model):
-    friend = models.ForeignKey(Profile, related_name='fiend_added')
-    user = models.ForeignKey(Profile)
+    users = models.ManyToManyField(User)
+    current_user = models.ForeignKey(User, related_name='owner', null=True)
 
+    @classmethod
+    def befriend(cls, current_user, new_friend):
+        friend, created = cls.objects.get_or_create(current_user=current_user)
+        friend.users.add(new_friend)
+
+    @classmethod
+    def unfriend(cls, current_user, new_friend):
+        friend, created = cls.objects.get_or_create(current_user=current_user)
+        friend.users.remove(new_friend)
