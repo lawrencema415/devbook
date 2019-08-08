@@ -2,5 +2,11 @@
 {% block content %}
 
 <h1 class="profile-name">{{user.username}}</h1>
+<form class="" action="index.html" method="post" style="margin-top: 7%;text-align:center">
+  {% csrf_token%}
+  {{form.as_p}}
+  <button type="submit" name="button">Post</button>
+</form>
+  <h2>{{text}}</h2>
 
 {% endblock %}
