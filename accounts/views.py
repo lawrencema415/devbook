@@ -23,7 +23,7 @@ def register(request):
                         return render(request, 'register.html', {'error': 'Email already exists. Please Log in.'})
         # if everything is okay Create a User
                 else:
-                    user = User.objects.create_user(username=username, password=password, email=email, first_name=first_name, last_name=last_name)   
+                    user = User.objects.create_user(username=username, password=password, email=email, first_name=first_name, last_name=last_name)
                     user.save()
                     return redirect('homepage')
         else:
@@ -32,9 +32,9 @@ def register(request):
     else:
         # send form
         return render(request, 'register.html')
-    
+
 def login(request):
-    # if POST 
+    # if POST
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -53,11 +53,11 @@ def login(request):
         else:
             print("I failed to login")
             return render(request, 'register.html', {'error': 'Invalid Credentials'})
-        
+
     # else send form
     else:
         return render(request, 'register.html')
-    
+
 def logout(request):
     auth.logout(request);
-    return redirect('signup')
+    return redirect('register')

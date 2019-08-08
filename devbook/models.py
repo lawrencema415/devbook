@@ -3,9 +3,12 @@ from django.contrib.auth.models import User
 from datetime import datetime
 # Create your models here.
 class Post(models.Model):
-    body = models.TextField(default='')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
+    body = models.CharField(max_length=500,default='')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     time_posted = models.DateTimeField(default=datetime.now())
+
+    def __str__(self):
+        return self.body
 
 
 class Comment(models.Model):
