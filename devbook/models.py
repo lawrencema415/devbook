@@ -4,13 +4,13 @@ from datetime import datetime
 from accounts.models import UserProfile
 # Create your models here.
 class Post(models.Model):
-    body = models.TextField()
+    body = models.TextField(default='')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
     time_posted = models.DateTimeField(default=datetime.now())
 
 
 class Comment(models.Model):
-    body = models.TextField()
+    body = models.TextField(default='')
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='origin_post')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='origin_user')
     time_posted = models.DateTimeField(default=datetime.now())
