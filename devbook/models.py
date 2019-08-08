@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
+from PIL import Image
 # Create your models here.
 class Post(models.Model):
     body = models.CharField(max_length=500,default='')
@@ -29,8 +30,8 @@ class Like(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     """do we want to CASCADE on delete?"""
-    follows = models.ManyToManyField('self', related_name='followed_by', symmetrical=False)
-    #image = models.ImageField(upload_to = 'pic_folder/', default = 'pic_folder/None/no-img.jpg')
+    follows = models.ManyToManyField('self', related_name='followed_by', symmetrical=False, blank=True)
+    image = models.ImageField(upload_to = 'profile_image', blank=True)
 
 #based on Max Goodridge's youtube tutorial Part 56
 class Friend(models.Model):
