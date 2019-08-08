@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<form class="" action="{% url 'post_body' %}" method="post" style="margin-top: 7%;text-align:center">
+  {% csrf_token%}
+  {{form.as_p}}
+  <button type="submit" name="button">Post</button>
+</form>
+  <h3>Posts</h3>
+  {% for post in posts%}
+  <hr>
+  <p>{{post.body}}</p>
+  <p>{{post.time_posted}}</p>
+  <h3>comments</h3>
+  <hr>
+  {% for comment in comments%}
+  {% if post == comment.post %}
+  <p>{{comment.body}} - {{comment.user}}  ({{comment.time_posted}})</p>
+  {% endif %}
+  {% endfor %}
+  <form class="" action="{% url 'post_comment' pk=post.pk %}" method="post">
+    {% csrf_token%}
+    {{commentForm.as_p}}
+    <button type="submit" name="button">Comment</button>
+  </form>
+
+  {% endfor %}
+{% endblock %}
