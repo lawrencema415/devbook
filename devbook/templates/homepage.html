@@ -6,14 +6,16 @@
   {{form.as_p}}
   <button type="submit" name="button">Post</button>
 </form>
+  <h3>Posts</h3>
   {% for post in posts%}
+  <hr>
   <p>{{post.body}}</p>
   <p>{{post.time_posted}}</p>
-  <p>comment</p>
+  <h3>comments</h3>
+  <hr>
   {% for comment in comments%}
   {% if post == comment.post %}
-  <p>{{comment.body}} - {{comment.user}}</p>
-  <p>{{comment.time_posted}}</p>
+  <p>{{comment.body}} - {{comment.user}}  ({{comment.time_posted}})</p>
   {% endif %}
   {% endfor %}
   <form class="" action="{% url 'post_comment' pk=post.pk %}" method="post">
