@@ -29,9 +29,9 @@
     </div>
   </nav>
 
-	<body>
+	<body style="margin-top:10%">
 		{% if user.is_authenticated %}
-			Welcome, {{user.username}}
+		<h1>Welcome, {{user.username}}</h1>	
 		{% endif %}
 		{% block content%}
 		{% endblock %}

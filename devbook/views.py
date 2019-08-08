@@ -9,7 +9,7 @@ def homepage(request):
     return render(request, 'homepage.html',{'form':form,'posts':posts})
 
 def post_body(request):
-    form = PostForm()
+    form = PostForm(request.POST)
     if form.is_valid():
         post = form.save(commit=False)
         post.user = request.user
