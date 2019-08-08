@@ -12,10 +12,13 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    body = models.TextField(default='')
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='origin_post')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='origin_user')
+    body = models.CharField(max_length=500,default='')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     time_posted = models.DateTimeField(default=datetime.now())
+
+    def __str__(self):
+        return self.body
 
 
 class Like(models.Model):
