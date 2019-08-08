@@ -7,6 +7,9 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user')
     time_posted = models.DateTimeField(default=datetime.now())
 
+    def __str__(self):
+        return self.body
+
 
 class Comment(models.Model):
     body = models.TextField(default='')
