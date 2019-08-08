@@ -27,6 +27,15 @@
                 <label for="password2">Confirm Password</label>
                 <input type="password" name="password2" required maxlength="25" minlength="4">
             </p>
+            <p>
+                <label for="birthday">Date of Birth</label>
+                <input id="startdate" name="birthday" min="1905-01-01" max="2000-01-01" type="date">
+            </p>
+            <p>
+            <input type="radio" name="gender" value="male" checked> Male<br>
+            <input type="radio" name="gender" value="female"> Female<br>
+            <input type="radio" name="gender" value="other"> Other<br>
+            </p>
             <button type="submit">Register</button>
         </form>
     </section>
