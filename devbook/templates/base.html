@@ -38,8 +38,8 @@
 
 	<body>
 		{% if user.is_authenticated %}
-		<h1>Welcome, {{user.first_name}}</h1>
-		<img src="{{ user.profile.image.url }}" width="240" alt="" style="border-radius: 50%;">
+		<h1 class="greeting">Welcome, {{user.first_name}}</h1>
+		<img class="profile-image" src="{{ user.profile.image.url }}" width="240" alt="" style="border-radius: 50%;">
 		{% endif %}
 		{% block content%}
 		{% endblock %}
