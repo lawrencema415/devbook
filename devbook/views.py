@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Post, Comment, Like, Profile
 from django.contrib.auth.decorators import login_required
-from .forms import PostForm, CommentForm, ProfileForm, LikeForm
+from .forms import PostForm, CommentForm, ProfileForm
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
 # Create your views here.
@@ -15,6 +16,16 @@ def homepage(request):
     profile = Profile.objects.all()
     likes = Like.objects.all()
     return render(request, 'homepage.html',{'form':form,'posts':posts,'commentForm':commentForm,'comments':comments, 'profile': profile, 'likes':likes,'likeForm':likeForm})
+
+def friends(request):
+    posts = Post.objects.all()
+    form = PostForm()
+    commentForm = CommentForm()
+    comments = Comment.objects.all()
+    users = User.objects.all()
+    user = request.user
+    profile = Profile.objects.all()
+    return render(request, 'homepage.html',{'form':form,'posts':posts,'commentForm':commentForm,'comments':comments, 'profile': profile, 'users':users})
 
 def profile(request):
     user = request.user
