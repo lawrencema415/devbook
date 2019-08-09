@@ -11,6 +11,11 @@ class Post(models.Model):
     def __str__(self):
         return self.body
 
+    def like_count(self):
+        return len(Like.objects.filter(post=self.pk))
+
+
+
 
 class Comment(models.Model):
     body = models.CharField(max_length=500,default='')
@@ -26,6 +31,8 @@ class Like(models.Model):
     liked = models.BooleanField(default=False)
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_liked')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_like')
+
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
