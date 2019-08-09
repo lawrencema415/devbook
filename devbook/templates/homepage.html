@@ -15,11 +15,11 @@
         <div class="media-left">
           {% if post.user == request.user %}
               <figure class="image is-64x64">
-                <img src="{{ user.profile.image.url }}" alt="Image">
+                <img src="{{ user.profile.image.url }}" alt="Image" style="width:50px;height:50px">
               </figure>
               {% else %}
                 <figure class="image is-64x64">
-                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Image">
+                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Image" tyle="width:50px;height:50px">
               </figure>
               {% endif %}
         </div>
@@ -54,11 +54,11 @@
             <div class="media-left">
               {% if comment.user == request.user %}
               <figure class="image is-64x64">
-                <img src="{{ user.profile.image.url }}" alt="Image">
+                <img src="{{ user.profile.image.url }}" alt="Image" tyle="width:50px;height:50px">
               </figure>
               {% else %}
                 <figure class="image is-64x64">
-                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Image">
+                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Image" tyle="width:50px;height:50px">
               </figure>
               {% endif %}
             </div>
@@ -70,13 +70,13 @@
                   {{comment.body}}
                 </p>
               </div>
-              
+
             </div>
           </article>
         </div>
         {% endif %}
         {% endfor %}
-        
+
         <form class="" action="{% url 'post_comment' pk=post.pk %}" method="post">
           {% csrf_token%}
           {{commentForm.as_p}}
