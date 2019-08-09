@@ -10,7 +10,7 @@ class PostForm(forms.ModelForm):
         "body": ""
         }
         widgets = {
-            'body': forms.TextInput(attrs={'placeholder': "What's on your mind?"})
+            'body': forms.TextInput(attrs={'placeholder': "What's on your mind?", 'class': 'input-post'})
         }
 class CommentForm(forms.ModelForm):
     class Meta:
@@ -20,7 +20,7 @@ class CommentForm(forms.ModelForm):
             "body": ""
         }
         widgets = {
-            'body': forms.TextInput(attrs={'placeholder': 'Write a comment...'})
+            'body': forms.TextInput(attrs={'placeholder': 'Write a comment...', 'class': 'input-comment'})
         }
 
 
