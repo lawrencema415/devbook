@@ -64,10 +64,10 @@ def post_comment(request,pk):
             comment.post = post
             comment.user = request.user
             comment.save()
-            return redirect('homepage')
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     else:
         form = CommentForm()
-        return redirect('homepage')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def like_post(request,pk):
     if request.method == 'POST':
@@ -78,7 +78,7 @@ def like_post(request,pk):
         like.user = request.user
         if Like.objects.filter(user=like.user,post=post).exists():
             Like.objects.filter(user=like.user,post=post).delete()
-            return redirect('homepage')
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
         else:
             like.save()
-        return redirect('homepage')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
