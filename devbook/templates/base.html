@@ -36,7 +36,7 @@
     </div>
   </nav>
 
-	<body style="margin-top:10%">
+	<body>
 		{% if user.is_authenticated %}
 		<h1>Welcome, {{user.first_name}}</h1>
 		<img src="{{ user.profile.image.url }}" width="240" alt="" style="border-radius: 50%;">

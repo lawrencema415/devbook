@@ -13,20 +13,9 @@
 </form>
 <h3>Posts</h3>
 {% for post in posts%}
-<hr />
-    <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--4-col-tablet mdl-shadow--2dp">
-      <div class="mdl-card__supporting-text">
-        <p>{{post.body}}</p>
-        <p><h6>{{post.time_posted}}</h6></p>
-      </div>
-      <div class="mdl-card__actions mdl-card--border">
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Comment</a>
-        <div class="mdl-layout-spacer"></div>
-          <button class="mdl-button mdl-button--icon mdl-button--colored"><i class="material-icons">favorite</i></button>
-          <button class="mdl-button mdl-button--icon mdl-button--colored"><i class="material-icons">share</i></button>
-      </div>
-    </div>
-{% endfor %}
+<hr>
+<p>{{post.body}}</p>
+<p>{{post.time_posted}}</p>
 <h3>comments</h3>
 <hr>
 {% for comment in comments%}
@@ -39,5 +28,5 @@
 {{commentForm.as_p}}
 <button type="submit" name="button">Comment</button>
 </form>
-    {% endfor %}
+{% endfor %}
 {% endblock %}
