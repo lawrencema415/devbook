@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Comment, Like
+from .models import Post, Comment, Like, Profile
 # bounding form to post model
 class PostForm(forms.ModelForm):
 
@@ -22,3 +22,9 @@ class CommentForm(forms.ModelForm):
         widgets = {
             'body': forms.TextInput(attrs={'placeholder': 'Write a comment...'})
         }
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('image',)

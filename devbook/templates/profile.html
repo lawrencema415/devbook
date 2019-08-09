@@ -1,7 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1 class="profile-name">{{user.username}}</h1>
 
+<form class="" action="{% url 'profile_edit'%}" method="post">
+{% csrf_token %}
+{{profile_form}}
+<button type="submit" name="button">Change</button>
+</form>
 <form class="" action="{% url 'post_body' %}" method="post" style="margin-top: 7%;text-align:center">
 {% csrf_token%}
 {{form.as_p}}
