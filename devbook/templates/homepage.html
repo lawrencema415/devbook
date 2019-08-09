@@ -4,7 +4,7 @@
 <form class="" action="{% url 'post_body' %}" method="post" style="margin-top: 7%;text-align:center">
   {% csrf_token%}
   {{form.as_p}}
-  <button type="submit" name="button">Post</button>
+  <button class="button" type="submit" name="button">Post</button>
 </form>
   <h3>Posts</h3>
   {% for post in posts%}
@@ -80,7 +80,7 @@
         <form class="" action="{% url 'post_comment' pk=post.pk %}" method="post">
           {% csrf_token%}
           {{commentForm.as_p}}
-          <button type="submit" name="button">Comment</button>
+          <button class="button" type="submit" name="button">Comment</button>
         </form>
       </div>
     </div>
