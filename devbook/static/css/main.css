@@ -1,4 +1,12 @@
 body    {
     font-family: 'Roboto', sans-serif;
+    background-color: darkslategray;
+    color: white;
 }
 
+.card {
+    background-color: darkorange;
+}
+.box {
+    background-color: darkgray;
+}

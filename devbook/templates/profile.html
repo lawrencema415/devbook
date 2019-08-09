@@ -1,10 +1,13 @@
+{% extends 'base.html' %}
 {% block content %}
 
-<form class="" action="{% url 'profile_edit'%}" method="post">
-{% csrf_token %}
-{{profile_form}}
-<button type="submit" name="button">Change</button>
+<form class="" action="{% url 'profile_edit'%}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{profile_form}}
+    <button type="submit" name="button">Change</button>
 </form>
+
+
 <form class="" action="{% url 'post_body' %}" method="post" style="margin-top: 7%;text-align:center">
 {% csrf_token%}
 {{form.as_p}}
@@ -21,11 +24,11 @@
 {% if post == comment.post %}
 <p>{{comment.body}} - {{comment.user}}  ({{comment.time_posted}})</p>
 {% endif %}
-{% comment %} {% endfor %} {% endcomment %}
+{% endfor %}
 <form class="" action="{% url 'post_comment' pk=post.pk %}" method="post">
 {% csrf_token%}
 {{commentForm.as_p}}
 <button type="submit" name="button">Comment</button>
 </form>
-    {% endfor %}
-{% endblock %} 
+{% endfor %}
+{% endblock %}
