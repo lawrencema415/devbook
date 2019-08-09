@@ -14,7 +14,7 @@ def homepage(request):
     profile = Profile.objects.all()
     return render(request, 'homepage.html',{'form':form,'posts':posts,'commentForm':commentForm,'comments':comments, 'profile': profile})
 
-def homepage(request):
+def friends(request):
     posts = Post.objects.all()
     form = PostForm()
     commentForm = CommentForm()
