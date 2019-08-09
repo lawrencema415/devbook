@@ -28,7 +28,7 @@ def register(request):
                     user.save()
                     newProfile = Profile.objects.create(user=user)
                     newProfile.save()
-                    return redirect('homepage')
+                    return redirect('login')
         else:
             return render(request, 'register.html', {'error': 'Passwords do not match.'})
     # else
