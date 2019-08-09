@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-
 <form class="" action="{% url 'post_body' %}" method="post" style="margin-top: 7%;text-align:center">
   {% csrf_token%}
   {{form.as_p}}
@@ -8,7 +7,6 @@
 </form>
   <h3>Posts</h3>
   {% for post in posts%}
-
   <div class="card">
     <div class="card-content">
       <div class="media">
@@ -29,7 +27,9 @@
         </div>
       </div>
       <div class="content">
+        <p class="text">
         {{post.body}}
+        </p>
         <nav class="level is-mobile">
           <div class="level-left">
             <a class="level-item" aria-label="reply">
@@ -51,7 +51,6 @@
         </nav>
         <br>
         <time datetime="2016-1-1"><small>{{post.time_posted}}</small></time>
-
         {% for comment in comments%}
         {% if post == comment.post %}
         <div class="box">
@@ -75,13 +74,11 @@
                   {{comment.body}}
                 </p>
               </div>
-
             </div>
           </article>
         </div>
         {% endif %}
         {% endfor %}
-
         <form class="" action="{% url 'post_comment' pk=post.pk %}" method="post">
           {% csrf_token%}
           {{commentForm.as_p}}
@@ -91,9 +88,4 @@
     </div>
   </div>
   {% endfor %}
-
-
-
-
-
 {% endblock %}
