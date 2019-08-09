@@ -10,10 +10,11 @@ def homepage(request):
     form = PostForm()
     commentForm = CommentForm()
     comments = Comment.objects.all()
+    likeForm = LikeForm()
     user = request.user
     profile = Profile.objects.all()
     likes = Like.objects.all()
-    return render(request, 'homepage.html',{'form':form,'posts':posts,'commentForm':commentForm,'comments':comments, 'profile': profile, 'likes':likes})
+    return render(request, 'homepage.html',{'form':form,'posts':posts,'commentForm':commentForm,'comments':comments, 'profile': profile, 'likes':likes,'likeForm':likeForm})
 
 def profile(request):
     user = request.user
@@ -68,14 +69,14 @@ def post_comment(request,pk):
         return redirect('homepage')
 
 def like_post(request,pk):
-    post = Post.objects.get(id=pk)
     if request.method == 'POST':
+        post = Post.objects.get(id=pk)
         form = LikeForm(request.POST)
         like = form.save(commit=False)
         like.post = post
         like.user = request.user
-        if Like.objects.filter(post=like.post,user=like.user).exists():
-            Like.objects.filter(post=like.post,user=like.user).delete()
+        if Like.objects.filter(user=like.user,post=post).exists():
+            Like.objects.filter(user=like.user,post=post).delete()
             return redirect('homepage')
         else:
             like.save()

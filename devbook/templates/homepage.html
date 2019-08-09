@@ -43,9 +43,11 @@
               </span>
             </a>
               {{post.like_count}} likes
-            <!-- Likes: {{likes.Post.count}} -->
           </div>
-          <button type="button" name="button"><a href="#">Like</a></button>
+          <form class="" action="{% url 'like_post' pk=post.pk %}" method="post">
+            {% csrf_token%}
+            <input type="Submit" name="button" value="like"></input>
+          </form>
         </nav>
         <br>
         <time datetime="2016-1-1"><small>{{post.time_posted}}</small></time>
