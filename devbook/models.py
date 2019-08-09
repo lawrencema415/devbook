@@ -32,6 +32,8 @@ class Like(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='post_liked')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_like')
 
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     """do we want to CASCADE on delete?"""

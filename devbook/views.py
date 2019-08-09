@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Post, Comment, Like, Profile
 from django.contrib.auth.decorators import login_required
-from .forms import PostForm, CommentForm, ProfileForm
+from .forms import PostForm, CommentForm, ProfileForm, LikeForm
 from django.http import HttpResponseRedirect
 
 # Create your views here.
@@ -65,4 +65,18 @@ def post_comment(request,pk):
             return redirect('homepage')
     else:
         form = CommentForm()
+        return redirect('homepage')
+
+def like_post(request,pk):
+    post = Post.objects.get(id=pk)
+    if request.method == 'POST':
+        form = LikeForm(request.POST)
+        like = form.save(commit=False)
+        like.post = post
+        like.user = request.user
+        if Like.objects.filter(post=like.post,user=like.user).exists():
+            Like.objects.filter(post=like.post,user=like.user).delete()
+            return redirect('homepage')
+        else:
+            like.save()
         return redirect('homepage')
