@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 
 # Create your views here.
 def homepage(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-time_posted')
     form = PostForm()
     commentForm = CommentForm()
     comments = Comment.objects.all()
@@ -51,8 +51,9 @@ def post_body(request):
         post = form.save(commit=False)
         post.user = request.user
         post.save()
-        return redirect('homepage')
-    return redirect('homepage')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 
 def post_comment(request,pk):
     post = Post.objects.get(id=pk)
