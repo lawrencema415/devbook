@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Post, Comment, Like, Profile
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm, CommentForm, ProfileForm
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 def homepage(request):
@@ -27,14 +28,16 @@ def profile(request):
 def profile_edit(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance = request.user)
-        
         if form.is_valid():
+            form.save(commit=False)
+            image = request.FILES['image']
+            print(image)
+            form.image = image
             form.save()
             return redirect('profile')
         else:
             form = ProfileForm()
         return render(request, 'profile.html')
-    
     
 
 
