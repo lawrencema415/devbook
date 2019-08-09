@@ -13,13 +13,19 @@
     <div class="card-content">
       <div class="media">
         <div class="media-left">
-          <figure class="image is-96x96">
-            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-          </figure>
+          {% if post.user == request.user %}
+              <figure class="image is-64x64">
+                <img src="{{ user.profile.image.url }}" alt="Image">
+              </figure>
+              {% else %}
+                <figure class="image is-64x64">
+                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Image">
+              </figure>
+              {% endif %}
         </div>
         <div class="media-content">
           <p class="title is-4">{{post.user}}</p>
-          <p class="subtitle is-6">{{post.user}}</p>
+          {% comment %} <p class="subtitle is-6">{{post.user}}</p> {% endcomment %}
         </div>
       </div>
       <div class="content">
@@ -46,9 +52,15 @@
         <div class="box">
           <article class="media">
             <div class="media-left">
+              {% if comment.user == request.user %}
               <figure class="image is-64x64">
-                <img src="https://bulma.io/images/placeholders/64x64.png" alt="Image">
+                <img src="{{ user.profile.image.url }}" alt="Image">
               </figure>
+              {% else %}
+                <figure class="image is-64x64">
+                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Image">
+              </figure>
+              {% endif %}
             </div>
             <div class="media-content">
               <div class="content">
