@@ -1,12 +1,55 @@
 body    {
     font-family: 'Roboto', sans-serif;
-    background-color: darkslategray;
-    color: white;
+    background: darkslategrey;
 }
 
 .card {
     background-color: darkorange;
 }
+
 .box {
-    background-color: darkgray;
+    background-color: wheat;
+}
+
+.greeting {
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.profile-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.input-post {
+    margin-bottom: 10px;
+    padding: 30px 80px;
+    background-color: silver;
+    color: black;
+    word-wrap: normal;
+    border: 5px solid gray;
+}
+
+.input-comment {
+    text-align: center;
+    padding: 30px 40%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: silver;
+    color: black;
+    word-wrap: normal;
+    border: 5px solid gray;
+}
+
+.button {
+    background-color: dodgerblue;
+    color: white;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
