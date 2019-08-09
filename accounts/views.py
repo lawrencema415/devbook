@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.models import User
+from devbook.models import Profile
 
 # Create your views here.
 def register(request):
@@ -25,6 +26,8 @@ def register(request):
                 else:
                     user = User.objects.create_user(username=username, password=password, email=email, first_name=first_name, last_name=last_name)
                     user.save()
+                    newProfile = Profile.objects.create(user=user)
+                    newProfile.save()
                     return redirect('homepage')
         else:
             return render(request, 'register.html', {'error': 'Passwords do not match.'})

@@ -31,7 +31,10 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     """do we want to CASCADE on delete?"""
     follows = models.ManyToManyField('self', related_name='followed_by', symmetrical=False, blank=True)
-    image = models.ImageField(upload_to = 'profile_image', blank=True)
+    image = models.ImageField(upload_to = 'profile_image', blank=True, default="profile_image/default.jpg")
+
+    def __str__(self):
+        return self.user.first_name
 
 #based on Max Goodridge's youtube tutorial Part 56
 class Friend(models.Model):
