@@ -12,7 +12,8 @@ def homepage(request):
     comments = Comment.objects.all()
     user = request.user
     profile = Profile.objects.all()
-    return render(request, 'homepage.html',{'form':form,'posts':posts,'commentForm':commentForm,'comments':comments, 'profile': profile})
+    likes = Like.objects.all()
+    return render(request, 'homepage.html',{'form':form,'posts':posts,'commentForm':commentForm,'comments':comments, 'profile': profile, 'likes':likes})
 
 def profile(request):
     user = request.user
@@ -28,6 +29,7 @@ def profile(request):
 def profile_edit(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance = request.user)
+
         if form.is_valid():
             form.save(commit=False)
             image = request.FILES['image']
@@ -38,7 +40,8 @@ def profile_edit(request):
         else:
             form = ProfileForm()
         return render(request, 'profile.html')
-    
+
+
 
 
 def post_body(request):
