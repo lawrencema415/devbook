@@ -22,7 +22,7 @@
 {% if post == comment.post %}
 <p>{{comment.body}} - {{comment.user}}  ({{comment.time_posted}})</p>
 {% endif %}
-{% comment %} {% endfor %} {% endcomment %}
+{% endfor %}
 <form class="" action="{% url 'post_comment' pk=post.pk %}" method="post">
 {% csrf_token%}
 {{commentForm.as_p}}
