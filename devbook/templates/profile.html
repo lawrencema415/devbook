@@ -1,22 +1,18 @@
-
 {% extends 'base.html' %}
 {% block content %}
 <form class="" action="{% url 'profile_edit' %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{profile_form}}
-    <input type="submit" value="Change" />
+  {% csrf_token %}
+  {{profile_form}}
+  <input type="submit" value="Change" />
 </form>
-<div class="card">
-  <h1>Name: {{profile.user}}</h1>
-  <h1>Bio: {{profile.bio}}</h1>
-  <h1>Location: {{profile.location}}</h1>
-  <h1>Phone number: {{profile.phone}}</h1>
-</div>
 
+<div class="card">
+  <a href="{% url 'user_prof' pk=profile.pk %}">My profile</a>
+</div>
 <form class="" action="{% url 'post_body' %}" method="post" style="margin-top: 7%;text-align:center">
-{% csrf_token%}
-{{form.as_p}}
-<button class="button" type="submit" name="button">Post</button>
+  {% csrf_token%}
+  {{form.as_p}}
+  <button class="button" type="submit" name="button">Post</button>
 </form>
 
 
@@ -25,88 +21,88 @@
 {% for post in posts%}
 
 <div class="card">
-<div class="card-content">
+  <div class="card-content">
     <div class="media">
-    <div class="media-left">
+      <div class="media-left">
         {% if post.user == request.user %}
-            <figure class="image is-64x64">
-            <img src="{{ user.profile.image.url }}" alt="Image">
-            </figure>
-            {% else %}
-            <figure class="image is-64x64">
-            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Image">
-            </figure>
-            {% endif %}
-    </div>
-    <div class="media-content">
+        <figure class="image is-64x64">
+          <a href="{% url 'user_prof' pk=post.user.pk %}"><img src="{{ user.profile.image.url }}" alt="Image" style="width:50px;height:50px"></a>
+        </figure>
+        {% else %}
+        <figure class="image is-64x64">
+          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Image">
+        </figure>
+        {% endif %}
+      </div>
+      <div class="media-content">
         <p class="title is-4">{{post.user}}</p>
         {% comment %} <p class="subtitle is-6">{{post.user}}</p> {% endcomment %}
-    </div>
+      </div>
     </div>
     <div class="content">
       {% if post.user == request.user %}
       <h4><a href="{% url 'post_delete' pk=post.pk %}">Delete Post</a></h4>
       {% endif %}
-        <p class="text">
-    {{post.body}}
-        </p>
-    <nav class="level is-mobile">
+      <p class="text">
+        {{post.body}}
+      </p>
+      <nav class="level is-mobile">
         <div class="level-left">
-        <a class="level-item" aria-label="reply">
+          <a class="level-item" aria-label="reply">
             <span class="icon is-small">
-            <i class="fas fa-reply" aria-hidden="true"></i>
+              <i class="fas fa-reply" aria-hidden="true"></i>
             </span>
-        </a>
-        <a class="level-item" aria-label="like">
+          </a>
+          <a class="level-item" aria-label="like">
             <span class="icon is-small">
-            <i class="fas fa-heart" aria-hidden="true"></i>
+              <i class="fas fa-heart" aria-hidden="true"></i>
             </span>
-        </a>
+          </a>
         </div>
-    </nav>
-    <br>
-    <time datetime="2016-1-1"><small>{{post.time_posted}}</small></time>
+      </nav>
+      <br>
+      <time datetime="2016-1-1"><small>{{post.time_posted}}</small></time>
 
-    {% for comment in comments%}
-    {% if post == comment.post %}
-    <div class="box">
-      {% if comment.user == request.user %}
-      <h4><a href="{% url 'delete_comment' pk=comment.pk %}">Delete Comment</a></h4>
-      {% endif %}
+      {% for comment in comments%}
+      {% if post == comment.post %}
+      <div class="box">
+        {% if comment.user == request.user %}
+        <h4><a href="{% url 'delete_comment' pk=comment.pk %}">Delete Comment</a></h4>
+        {% endif %}
         <article class="media">
-        <div class="media-left">
+          <div class="media-left">
             {% if comment.user == request.user %}
             <figure class="image is-64x64">
-            <img src="{{ user.profile.image.url }}" alt="Image">
+              <a href="{% url 'user_prof' pk=post.user.pk %}"><img src="{{ user.profile.image.url }}" alt="Image" style="width:50px;height:50px"></a>
             </figure>
             {% else %}
             <figure class="image is-64x64">
-            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Image">
+              <a href="{% url 'user_prof' pk=post.user.profile.user.pk %}"><img src="{{post.user.profile.image.url}}" alt="Image" tyle="width:50px;height:50px"></a>
             </figure>
             {% endif %}
-        </div>
-        <div class="media-content">
+          </div>
+          <div class="media-content">
             <div class="content">
-            <p>
+              <p>
                 <strong>{{comment.user}}</strong> <small>{{comment.time_posted}}</small>
                 <br>
                 {{comment.body}}
-            </p>
+              </p>
             </div>
 
-        </div>
+          </div>
         </article>
-    </div>
-    {% endif %}
-    {% endfor %}
+      </div>
+      {% endif %}
+      {% endfor %}
 
-    <form class="" action="{% url 'post_comment' pk=post.pk %}" method="post">
+      <form class="" action="{% url 'post_comment' pk=post.pk %}" method="post">
         {% csrf_token%}
         {{commentForm.as_p}}
         <button class="button" type="submit" name="button">Comment</button>
-    </form>
+      </form>
     </div>
-</div>
+  </div>
 </div>
 {% endfor %}
 
