@@ -91,6 +91,17 @@ def post_comment(request,pk):
     else:
         form = CommentForm()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    
+def comment_edit(request, pk):
+    comment = Comment.objects.get(id=pk)
+    if request.method == 'POST':
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            comment = form.save()
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    else:
+        form = PostForm(instance=comment)
+    return render(request, 'comment_form.html', {'form': form, 'header': f'Edit Comment'})
 
 def delete_comment(request,pk):
     Comment.objects.get(pk=pk).delete()
