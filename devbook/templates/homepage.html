@@ -27,6 +27,7 @@
         </div>
       </div>
       <div class="content">
+        <h4><a href="{% url 'post_delete' pk=post.pk %}">Delete Post</a></h4>
         <p class="text">
         {{post.body}}
         </p>

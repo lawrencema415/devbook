@@ -61,6 +61,11 @@ def post_body(request):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+def post_delete(request, pk):
+    Post.objects.get(pk=pk).delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    
+
 
 def post_comment(request,pk):
     post = Post.objects.get(id=pk)
