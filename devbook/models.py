@@ -39,6 +39,9 @@ class Profile(models.Model):
     """do we want to CASCADE on delete?"""
     follows = models.ManyToManyField('self', related_name='followed_by', symmetrical=False, blank=True)
     image = models.ImageField(upload_to = 'profile_image', blank=True, default="profile_image/default.jpg")
+    bio = models.CharField(max_length=200,default='')
+    location = models.CharField(max_length=50, default='')
+    phone = models.CharField(max_length=30,default='')
 
     def __str__(self):
         return self.user.first_name
@@ -57,5 +60,3 @@ class Friend(models.Model):
     def unfriend(cls, current_user, new_friend):
         friend, created = cls.objects.get_or_create(current_user=current_user)
         friend.users.remove(new_friend)
-
-

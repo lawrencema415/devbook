@@ -58,3 +58,13 @@ body    {
     background-color: white;
     padding: 10px;
 }
+
+.nav-link img {
+  height: 100%;
+  width: 100%;
+}
+
+.media-left img {
+  height:100%;
+  width:100%;
+}

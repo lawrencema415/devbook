@@ -53,6 +53,7 @@
 				{% if user.is_authenticated %}
 				<a class="navbar-item" href="{% url 'logout'%}">Log Out</a>
 				{% else %}
+				<a class="navbar-item" href="{% url 'register'%}">Register</a>
 				<a class="navbar-item" href="{% url 'login'%}">Log In</a>
 				{% endif %}
 
@@ -67,7 +68,8 @@
 <body>
 	{% if user.is_authenticated %}
 	<h1 class="greeting">Welcome, {{user.first_name}}</h1>
-	<img class="profile-image" src="{{ user.profile.image.url }}" width="240" alt="" style="border-radius: 50%;">
+	<!-- quick fix for profile picture size, will change into css later -->
+	<img class="profile-image" src="{{ user.profile.image.url }}" width="240" alt="profile picture" style="border-radius: 50%;height:230px;">
 	{% endif %}
 	{% block content%}
 	{% endblock %}

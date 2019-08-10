@@ -6,11 +6,21 @@
     {{profile_form}}
     <input type="submit" value="Change" />
 </form>
+<div class="card">
+  <h1>Name: {{profile.user}}</h1>
+  <h1>Bio: {{profile.bio}}</h1>
+  <h1>Location: {{profile.location}}</h1>
+  <h1>Phone number: {{profile.phone}}</h1>
+</div>
+
 <form class="" action="{% url 'post_body' %}" method="post" style="margin-top: 7%;text-align:center">
 {% csrf_token%}
 {{form.as_p}}
 <button class="button" type="submit" name="button">Post</button>
 </form>
+
+
+
 <h3>Posts</h3>
 {% for post in posts%}
 
