@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-
 <form class="" action="{% url 'post_body' %}" method="post" style="margin-top: 7%;text-align:center">
   {% csrf_token%}
   {{form.as_p}}
@@ -32,7 +31,10 @@
           </div>
         </div>
         <div class="content">
-          {{post.body}}
+            <h4><a href="{% url 'post_delete' pk=post.pk %}">Delete Post</a></h4>
+            <p class="text">
+            {{post.body}}
+            </p>
           <nav class="level is-mobile">
             <div class="level-left">
               <a class="level-item" aria-label="reply">

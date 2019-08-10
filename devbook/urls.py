@@ -10,7 +10,8 @@ urlpatterns = [
     path('post_url/',views.post_body,name='post_body'),
     path('post_comment/<int:pk>/comments/new',views.post_comment,name='post_comment'),
     path('like_post/<int:pk>/likes/new',views.like_post,name='like_post'),
-    path('friends/', views.profile, name='friends')
+    path('friends/', views.profile, name='friends'),
+    path('post/<int:pk>/delete', views.post_delete, name="post_delete"),
 ]
 
 if settings.DEBUG:

@@ -39,21 +39,20 @@ def profile(request):
     return render(request, 'profile.html',{'form':form,'posts':posts,'commentForm':commentForm,'comments':comments, 'profile': profile, 'profile_form': profile_form})
 
 def profile_edit(request):
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance = request.user)
-
+    form = ProfileForm(request.POST)
+    print(request.FILES.get('image', False))
+    if request.FILES.get('image', False):
         if form.is_valid():
-            form.save(commit=False)
-            image = request.FILES['image']
-            print(image)
-            form.image = image
-            form.save()
-            return redirect('profile')
-        else:
-            form = ProfileForm()
-        return render(request, 'profile.html')
-
-
+            if request.method == 'POST':
+                profiles = Profile.objects.filter(user=request.user)
+                profiles.delete()
+                profile = Profile()
+                profile.user = request.user
+                profile.image = request.FILES['image']
+                profile.save()
+                return redirect('profile')
+    else:
+        return redirect('profile')
 
 
 def post_body(request):
@@ -64,6 +63,11 @@ def post_body(request):
         post.save()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def post_delete(request, pk):
+    Post.objects.get(pk=pk).delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    
 
 
 def post_comment(request,pk):
