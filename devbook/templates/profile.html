@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<img class="profile-image" src="{{ user.profile.image.url }}" width="240" alt="profile picture" style="border-radius: 50%;height:230px;">
 <form class="" action="{% url 'profile_edit' %}" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{profile_form}}

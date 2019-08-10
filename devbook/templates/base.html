@@ -66,11 +66,7 @@
 
 
 <body>
-	{% if user.is_authenticated %}
-	<h1 class="greeting">Welcome, {{user.first_name}}</h1>
-	<!-- quick fix for profile picture size, will change into css later -->
-	<img class="profile-image" src="{{ user.profile.image.url }}" width="240" alt="profile picture" style="border-radius: 50%;height:230px;">
-	{% endif %}
+	
 	{% block content%}
 	{% endblock %}
 	<!-- 	JQUERY 	-->
