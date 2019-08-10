@@ -57,3 +57,5 @@ class Friend(models.Model):
     def unfriend(cls, current_user, new_friend):
         friend, created = cls.objects.get_or_create(current_user=current_user)
         friend.users.remove(new_friend)
+
+
