@@ -31,8 +31,8 @@
           </div>
         </div>
         <div class="content">
+          {% if post.user == request.user %}
         <h2><a href="{% url 'post_edit' pk=post.pk %}">Edit Post</a></h2>
-            {% if post.user == request.user %}
             <h4><a href="{% url 'post_delete' pk=post.pk %}">Delete Post</a></h4>
             {% endif %}
             <p class="text">
@@ -79,6 +79,10 @@
                   <p>
                     <strong>{{comment.user}}</strong> <small>{{comment.time_posted}}</small>
                     <br>
+                    {% if comment.user == request.user %}
+                    <h2><a href="{% url 'comment_edit' pk=comment.pk %}">Edit Comment</a></h2>
+                          <h4><a href="{% url 'delete_comment' pk=comment.pk %}">Delete Comment</a></h4>
+                    {% endif %}
                     {{comment.body}}
                   </p>
                 </div>
