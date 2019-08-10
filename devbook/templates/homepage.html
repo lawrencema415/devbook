@@ -32,7 +32,9 @@
         </div>
         <div class="content">
         <h2><a href="{% url 'post_edit' pk=post.pk %}">Edit Post</a></h2>
+            {% if post.user == request.user %}
             <h4><a href="{% url 'post_delete' pk=post.pk %}">Delete Post</a></h4>
+            {% endif %}
             <p class="text">
             {{post.body}}
             </p>
