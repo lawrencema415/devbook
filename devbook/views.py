@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Post, Comment, Like, Profile
+from .models import Post, Comment, Like, Profile, Friend
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm, CommentForm, ProfileForm, LikeForm
 from django.contrib.auth.models import User
