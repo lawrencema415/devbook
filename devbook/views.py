@@ -67,7 +67,7 @@ def post_body(request):
 def post_delete(request, pk):
     Post.objects.get(pk=pk).delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    
+
 def post_edit(request, pk):
     post = Post.objects.get(id=pk)
     if request.method == 'POST':
@@ -75,7 +75,7 @@ def post_edit(request, pk):
         if form.is_valid():
             post = form.save()
             return redirect('homepage')
-    else: 
+    else:
         form = PostForm(instance=post)
     return render(request, 'post_form.html', {'form': form, 'header': f'Edit Post'})
 
@@ -92,6 +92,10 @@ def post_comment(request,pk):
     else:
         form = CommentForm()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def delete_comment(request,pk):
+    Comment.objects.get(pk=pk).delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))    
 
 def like_post(request,pk):
     if request.method == 'POST':

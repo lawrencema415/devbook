@@ -34,6 +34,9 @@
     </div>
     </div>
     <div class="content">
+      {% if post.user == request.user %}
+      <h4><a href="{% url 'post_delete' pk=post.pk %}">Delete Post</a></h4>
+      {% endif %}
         <p class="text">
     {{post.body}}
         </p>
@@ -57,6 +60,9 @@
     {% for comment in comments%}
     {% if post == comment.post %}
     <div class="box">
+      {% if comment.user == request.user %}
+      <h4><a href="{% url 'delete_comment' pk=comment.pk %}">Delete Comment</a></h4>
+      {% endif %}
         <article class="media">
         <div class="media-left">
             {% if comment.user == request.user %}
@@ -77,13 +83,13 @@
                 {{comment.body}}
             </p>
             </div>
-            
+
         </div>
         </article>
     </div>
     {% endif %}
     {% endfor %}
-    
+
     <form class="" action="{% url 'post_comment' pk=post.pk %}" method="post">
         {% csrf_token%}
         {{commentForm.as_p}}
