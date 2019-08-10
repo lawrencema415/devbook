@@ -33,8 +33,7 @@ def profile(request):
     form = PostForm()
     commentForm = CommentForm()
     comments = Comment.objects.all()
-    user = request.user
-    profile = Profile.objects.all()
+    profile = Profile.objects.get(user=user)
     profile_form = ProfileForm()
     return render(request, 'profile.html',{'form':form,'posts':posts,'commentForm':commentForm,'comments':comments, 'profile': profile, 'profile_form': profile_form})
 
@@ -95,7 +94,7 @@ def post_comment(request,pk):
 
 def delete_comment(request,pk):
     Comment.objects.get(pk=pk).delete()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))    
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def like_post(request,pk):
     if request.method == 'POST':
@@ -110,3 +109,8 @@ def like_post(request,pk):
         else:
             like.save()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def user_prof(request,pk):
+    profile = profile.objects.get(id=pk)
+    profile_form = ProfileForm()
+    return redirect(request, 'userprofile.html',{"profile":profile,"profile_form":profile_form })
