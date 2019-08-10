@@ -6,91 +6,131 @@
   {{form.as_p}}
   <button class="button" type="submit" name="button">Post</button>
 </form>
-  <h3>Posts</h3>
-  {% for post in posts%}
 
-  <div class="card">
-    <div class="card-content">
-      <div class="media">
-        <div class="media-left">
-          {% if post.user == request.user %}
-              <figure class="image is-64x64">
-                <img src="{{ user.profile.image.url }}" alt="Image" style="width:50px;height:50px">
-              </figure>
-              {% else %}
-                <figure class="image is-64x64">
-                <img src="{{post.user.profile.image.url}}" alt="Image" tyle="width:50px;height:50px">
-              </figure>
-              {% endif %}
-        </div>
-        <div class="media-content">
-          <p class="title is-4">{{post.user}}</p>
-          {% comment %} <p class="subtitle is-6">{{post.user}}</p> {% endcomment %}
-        </div>
-      </div>
-      <div class="content">
-        {{post.body}}
-        <nav class="level is-mobile">
-          <div class="level-left">
-            <a class="level-item" aria-label="reply">
-              <span class="icon is-small">
-                <i class="fas fa-reply" aria-hidden="true"></i>
-              </span>
-            </a>
-            <a class="level-item" aria-label="like">
-              <span class="icon is-small">
-                <i class="fas fa-heart" aria-hidden="true"></i>
-              </span>
-            </a>
-              {{post.like_count}} likes
+<div class="columns">
+  <div class="column is-two-thirds">
+    <h3>Posts</h3>
+    {% for post in posts%}
+
+    <div class="card">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            {% if post.user == request.user %}
+            <figure class="image is-64x64">
+              <img src="{{ user.profile.image.url }}" alt="Image" style="width:50px;height:50px">
+            </figure>
+            {% else %}
+            <figure class="image is-64x64">
+              <img src="{{post.user.profile.image.url}}" alt="Image" tyle="width:50px;height:50px">
+            </figure>
+            {% endif %}
           </div>
-          <form class="" action="{% url 'like_post' pk=post.pk %}" method="post">
-            {% csrf_token%}
-            <input type="Submit" name="button" value="like"></input>
-          </form>
-        </nav>
-        <br>
-        <time datetime="2016-1-1"><small>{{post.time_posted}}</small></time>
-
-        {% for comment in comments%}
-        {% if post == comment.post %}
-        <div class="box">
-          <article class="media">
-            <div class="media-left">
-              {% if comment.user == request.user %}
-              <figure class="image is-64x64">
-                <img src="{{ user.profile.image.url }}" alt="Image" tyle="width:50px;height:50px">
-              </figure>
-              {% else %}
-                <figure class="image is-64x64">
-                <img src="{{comment.user.profile.image.url}}" alt="Image" tyle="width:50px;height:50px">
-              </figure>
-              {% endif %}
-            </div>
-            <div class="media-content">
-              <div class="content">
-                <p>
-                  <strong>{{comment.user}}</strong> <small>{{comment.time_posted}}</small>
-                  <br>
-                  {{comment.body}}
-                </p>
-              </div>
-
-            </div>
-          </article>
+          <div class="media-content">
+            <p class="title is-4">{{post.user}}</p>
+            {% comment %} <p class="subtitle is-6">{{post.user}}</p> {% endcomment %}
+          </div>
         </div>
-        {% endif %}
-        {% endfor %}
+        <div class="content">
+          {{post.body}}
+          <nav class="level is-mobile">
+            <div class="level-left">
+              <a class="level-item" aria-label="reply">
+                <span class="icon is-small">
+                  <i class="fas fa-reply" aria-hidden="true"></i>
+                </span>
+              </a>
+              <a class="level-item" aria-label="like">
+                <span class="icon is-small">
+                  <i class="fas fa-heart" aria-hidden="true"></i>
+                </span>
+              </a>
+              {{post.like_count}} likes
+            </div>
+            <form class="" action="{% url 'like_post' pk=post.pk %}" method="post">
+              {% csrf_token%}
+              <input type="Submit" name="button" value="like"></input>
+            </form>
+          </nav>
+          <br>
+          <time datetime="2016-1-1"><small>{{post.time_posted}}</small></time>
+          {% for comment in comments%}
+          {% if post == comment.post %}
+          <div class="box">
+            <article class="media">
+              <div class="media-left">
+                {% if comment.user == request.user %}
+                <figure class="image is-64x64">
+                  <img src="{{ user.profile.image.url }}" alt="Image" tyle="width:50px;height:50px">
+                </figure>
+                {% else %}
+                <figure class="image is-64x64">
+                  <img src="{{comment.user.profile.image.url}}" alt="Image" tyle="width:50px;height:50px">
+                </figure>
+                {% endif %}
+              </div>
+              <div class="media-content">
+                <div class="content">
+                  <p>
+                    <strong>{{comment.user}}</strong> <small>{{comment.time_posted}}</small>
+                    <br>
+                    {{comment.body}}
+                  </p>
+                </div>
+              </div>
+            </article>
+          </div>
+          {% endif %}
+          {% endfor %}
 
-        <form class="" action="{% url 'post_comment' pk=post.pk %}" method="post">
-          {% csrf_token%}
-          {{commentForm.as_p}}
-          <button class="button" type="submit" name="button">Comment</button>
-        </form>
+          <form class="" action="{% url 'post_comment' pk=post.pk %}" method="post">
+            {% csrf_token%}
+            {{commentForm.as_p}}
+            <button class="button" type="submit" name="button">Comment</button>
+          </form>
+        </div>
       </div>
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
+
+  <div class="column">
+    <h3>Friends</h3>
+
+    <div class="columns">
+      <div class="column">Auto</div>
+      <div class="column is-four-fifths">
+        <div class="card">
+          <div class="columns">
+            <div class="column is-half">
+              <div class="card-image">
+                <figure class="image is-96x96">
+                    <img src="{{ user.profile.image.url }}" alt="Image" >
+                </figure>
+              </div>
+            </div>
+            <div class="column">
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4">Best Friend 1</p>
+                    <p class="subtitle is-6">@bff1</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class="column">Auto</div>
+    </div>
+  </div>
+</div>
+
+
 
 
 
