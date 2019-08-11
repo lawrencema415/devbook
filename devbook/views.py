@@ -91,7 +91,7 @@ def post_comment(request,pk):
     else:
         form = CommentForm()
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-    
+
 def comment_edit(request, pk):
     comment = Comment.objects.get(id=pk)
     if request.method == 'POST':
@@ -122,6 +122,18 @@ def like_post(request,pk):
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def user_prof(request,pk):
-    profile = profile.objects.get(id=pk)
+    profile = Profile.objects.get(id=pk)
     profile_form = ProfileForm()
-    return redirect(request, 'userprofile.html',{"profile":profile,"profile_form":profile_form })
+    return render(request, 'userprofile.html',{"profile":profile,"profile_form":profile_form })
+
+def search(request):
+    if request.method == 'POST':
+        search_profile = request.POST.get('textfield',None)
+        try:
+            user = User.objects.filter(first_name = search_profile)
+            profile = Profile.objects.filter(user = user)
+            return HttpResponse(profile)
+        except profile.DoesNotExist:
+            return HttpResponse("No user in database")
+    else:
+        return render(request,'profile.html')
