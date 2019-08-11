@@ -27,6 +27,7 @@ def friends(request):
     profile = Profile.objects.all()
     return render(request, 'homepage.html',{'form':form,'posts':posts,'commentForm':commentForm,'comments':comments, 'profile': profile, 'users':users})
 
+@login_required
 def profile(request):
     user = request.user
     posts = Post.objects.filter(user=user)
@@ -53,7 +54,7 @@ def profile_edit(request):
     else:
         return redirect('profile')
 
-
+@login_required
 def post_body(request):
     form = PostForm(request.POST)
     if form.is_valid():
@@ -78,6 +79,7 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'post_form.html', {'form': form, 'header': f'Edit Post'})
 
+@login_required
 def post_comment(request,pk):
     post = Post.objects.get(id=pk)
     if request.method == 'POST':
