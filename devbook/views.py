@@ -125,3 +125,15 @@ def user_prof(request,pk):
     profile = Profile.objects.get(id=pk)
     profile_form = ProfileForm()
     return render(request, 'userprofile.html',{"profile":profile,"profile_form":profile_form })
+
+def search(request):
+    if request.method == 'POST':
+        search_profile = request.POST.get('textfield',None)
+        try:
+            user = User.objects.filter(first_name = search_profile)
+            profile = Profile.objects.filter(user = user)
+            return HttpResponse(profile)
+        except profile.DoesNotExist:
+            return HttpResponse("No user in database")
+    else:
+        return render(request,'profile.html')
