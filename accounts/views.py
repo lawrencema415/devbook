@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.models import User
 from devbook.models import Profile
+from django.core.mail import send_mail
+from django.conf import settings
 
 # Create your views here.
 def register(request):
@@ -28,6 +30,13 @@ def register(request):
                     user.save()
                     newProfile = Profile.objects.create(user=user)
                     newProfile.save()
+                    send_mail(
+                        'Welcome to DevBook!',
+                        '<h1>Thank you for registering to DevBook.</h1><img src="https://images.unsplash.com/photo-1561152820-340780bc049e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=80" alt="laptop"/><h1>DevBook is a Social media platform that allows you to interact with other developers. Ask for help, help others, and make connections!</h1>',
+                        settings.EMAIL_HOST_USER,
+                        [user.email, settings.EMAIL_HOST_USER],
+                        fail_silently=True
+                    )
                     return redirect('login')
         else:
             return render(request, 'register.html', {'error': 'Passwords do not match.'})
