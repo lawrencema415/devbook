@@ -98,7 +98,7 @@ def comment_edit(request, pk):
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             comment = form.save()
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            return redirect('homepage')
     else:
         form = PostForm(instance=comment)
     return render(request, 'comment_form.html', {'form': form, 'header': f'Edit Comment'})

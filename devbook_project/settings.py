@@ -27,6 +27,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'devbookdevs@gmail.com'
+EMAIL_HOST_PASSWORD = 'devbook123'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+
+
+STRIPE_SECRET_KEY = 'sk_test_JvTJvKNvt0l7NscGE6ebPptr00Jm0zO1Pv'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_5dvQaafFVsYfx2Y11KzT1tIm00Ter9mXfV'
+
 
 # Application definition
 
@@ -39,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'devbook',
     'accounts',
+    'payments.apps.PaymentsConfig',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +136,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
 MEDIA_URL = '/media/'
+
