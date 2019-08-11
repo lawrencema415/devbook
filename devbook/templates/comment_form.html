@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="form-section">
+        <h1>{{header}}</h1>
+    {% if form %}
+    <form method="POST" class="comment-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    {% endif %}
+    </section>
+{% endblock %}
