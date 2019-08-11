@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
-User profile page
+{% for profile in profile %}
 
 <div class="card">
   <div class="media-left">
@@ -9,14 +8,10 @@ User profile page
       <a href="{% url 'user_prof' pk=profile.user.pk %}"><img src="{{ profile.user.profile.image.url }}" alt="Image" style="width:50px;height:50px"></a>
     </figure>
   <div>
-  <h1>Name: {{profile.user}}</h1>
-  <h1>Bio: {{profile.bio}}</h1>
-  <h1>Location: {{profile.location}}</h1>
-  <h1>Phone number: {{profile.phone}}</h1>
+  <h1>Name: {{profile.user.first_name}}</h1>
+  <h1>Location: {{profile.user.location}}</h1>
 </div>
 <hr>
 
-<!-- curently not working, will implement later for specific user profile -->
-
-
+{% endfor %}
 {% endblock %}
