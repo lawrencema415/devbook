@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
+<!-- {% load widget_tweaks %}
+{{ post|add_class:"comment-style"}} -->
 <form class="" action="{% url 'post_body' %}" method="post" style="margin-top: 7%;text-align:center">
   {% csrf_token%}
   {{form.as_p}}
@@ -36,6 +38,7 @@
           <h4><a href="{% url 'post_delete' pk=post.pk %}">Delete Post</a></h4>
           {% endif %}
           <p class="text">
+            <!-- {% render_field {%post.body%} class="comment-style" %} -->
             {{post.body}}
           </p>
           <nav class="level is-mobile">
