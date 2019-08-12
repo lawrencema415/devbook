@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 {% block content %}
-<!-- {% load widget_tweaks %}
-{{ post|add_class:"comment-style"}} -->
 <form class="" action="{% url 'post_body' %}" method="post" style="margin-top: 7%;text-align:center">
   {% csrf_token%}
   {{form.as_p}}
@@ -12,7 +10,7 @@
   <div class="column is-two-thirds">
     <h3>Posts</h3>
     {% for post in posts%}
-
+    
     <div class="card">
       <div class="card-content">
         <div class="media">
@@ -27,7 +25,9 @@
             </figure>
             {% endif %}
           </div>
+          
           <div class="media-content">
+              
             <p class="title is-4">{{post.user}}</p>
             {% comment %} <p class="subtitle is-6">{{post.user}}</p> {% endcomment %}
           </div>
@@ -38,7 +38,6 @@
           <h4><a href="{% url 'post_delete' pk=post.pk %}">Delete Post</a></h4>
           {% endif %}
           <p class="text">
-            <!-- {% render_field {%post.body%} class="comment-style" %} -->
             {{post.body}}
           </p>
           <nav class="level is-mobile">

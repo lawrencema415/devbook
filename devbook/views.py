@@ -98,7 +98,7 @@ def comment_edit(request, pk):
         form = CommentForm(request.POST, instance=comment)
         if form.is_valid():
             comment = form.save()
-            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            return redirect('homepage')
     else:
         form = PostForm(instance=comment)
     return render(request, 'comment_form.html', {'form': form, 'header': f'Edit Comment'})
@@ -127,13 +127,6 @@ def user_prof(request,pk):
     return render(request, 'userprofile.html',{"profile":profile,"profile_form":profile_form })
 
 def search(request):
-    if request.method == 'POST':
-        search_profile = request.POST.get('textfield',None)
-        try:
-            user = User.objects.filter(first_name = search_profile)
-            profile = Profile.objects.filter(user = user)
-            return HttpResponse(profile)
-        except profile.DoesNotExist:
-            return HttpResponse("No user in database")
-    else:
-        return render(request,'profile.html')
+    profile = Profile.objects.all()
+    profile_form = ProfileForm()
+    return render(request, 'search.html',{"profile":profile,"profile_form":profile_form })
