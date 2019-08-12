@@ -28,12 +28,15 @@ body    {
 .input-post {
     margin-bottom: 10px;
     padding: 30px 80px;
-    background-color: darkslategray;
-    color: white;
+    background-color: gray;
+    color: black;
     word-wrap: normal;
     border: 5px solid darkgrey;
     border-radius: 10%;
-    
+}
+
+.input-post::placeholder {
+    color: black;
 }
 
 .input-comment {
@@ -42,11 +45,15 @@ body    {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    background-color: silver;
+    background-color: gray;
     color: black;
     word-wrap: normal;
-    border: 5px solid gray;
+    border: 5px solid darkgray;
     border-radius: 10%;
+}
+
+.input-comment::placeholder {
+    color: black;
 }
 
 .button {
@@ -110,4 +117,8 @@ body    {
     margin-left: 40% !important;
     margin-right: 40% !important;
     margin-bottom: 60px;
+}
+
+.title {
+    color: white;
 }
