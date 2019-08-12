@@ -143,10 +143,13 @@ def user_profile_edit(request, pk):
 def search(request):
     name = request.POST['name']
     user = User.objects.filter(first_name__icontains=name)
-    profile = []
-    for user in user:
-        if Profile.objects.get(user=user):
-            profile.append(Profile.objects.get(user=user))
+    if name is not "":
+        profile = []
+        for user in user:
+            if Profile.objects.get(user=user):
+                profile.append(Profile.objects.get(user=user))
+    else:
+        profile = Profile.objects.all()
     profile_form = ProfileForm()
     return render(request, 'search.html',{"profile":profile})
 
