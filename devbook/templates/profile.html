@@ -9,7 +9,23 @@
 </form>
 
 <div class="card">
-  <a href="{% url 'user_prof' pk=profile.pk %}">My profile</a>
+  <div class="card">
+  <div class="media-left">
+  <div>
+  {% if user.pk != profile.user.pk  %}
+  <a href="{% url 'mail' pk=profile.pk %}">Message user</a>
+  {% endif %}
+  <div class="profile-body">
+  {% if profile.user == request.user %}
+  <h4><a href="{% url 'user_profile_edit' pk=profile.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
+  {% endif %}
+  <h1>Name: {{profile.user}}</h1>
+  <h1>Bio: {{profile.bio}}</h1>
+  <h1>Location: {{profile.location}}</h1>
+  <h1>Phone number: {{profile.phone}}</h1>
+  <div>
+</div>
+<hr>
 </div>
 <form class="" action="{% url 'post_body' %}" method="post" style="margin-top: 7%;text-align:center">
   {% csrf_token%}
@@ -43,7 +59,7 @@
     </div>
     <div class="content">
       {% if post.user == request.user %}
-      <h4><a href="{% url 'post_edit' pk=post.pk %}">Edit Post</a></h4>
+      <h4><a href="{% url 'post_edit' pk=post.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
       <h4><a href="{% url 'post_delete' pk=post.pk %}">Delete Post</a></h4>
       {% endif %}
       <p class="text">
@@ -70,7 +86,7 @@
       {% if post == comment.post %}
       <div class="box">
         {% if comment.user == request.user %}
-        <h4><a href="{% url 'comment_edit' pk=comment.pk %}">Edit Comment</a></h4>
+        <h4><a href="{% url 'comment_edit' pk=comment.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
         <h4><a href="{% url 'delete_comment' pk=comment.pk %}">Delete Comment</a></h4>
         {% endif %}
         <article class="media">

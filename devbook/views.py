@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Post, Comment, Like, Profile, Friend, Message
 from django.contrib.auth.decorators import login_required
-from .forms import PostForm, CommentForm, ProfileForm, LikeForm, MessageForm
+from .forms import PostForm, CommentForm, ProfileForm, LikeForm, MessageForm, UserProfileForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
@@ -127,6 +127,18 @@ def user_prof(request,pk):
     profile = Profile.objects.get(id=pk)
     profile_form = ProfileForm()
     return render(request, 'userprofile.html',{"profile":profile,"profile_form":profile_form })
+
+@login_required
+def user_profile_edit(request, pk):
+    profile = Profile.objects.get(id=pk)
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            profile = form.save()
+            return redirect('profile')
+    else:
+        form = UserProfileForm(instance=profile)
+    return render(request, 'user_form.html', {'form': form, 'header': f'Edit Profile'})
 
 def search(request):
     profile = Profile.objects.all()

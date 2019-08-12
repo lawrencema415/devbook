@@ -12,15 +12,16 @@ User profile page
   {% if user.pk != profile.user.pk  %}
   <a href="{% url 'mail' pk=profile.pk %}">Message user</a>
   {% endif %}
-
+  <div class="profile-body">
+  <h4><a href="{% url 'user_profile_edit' pk=profile.pk %}">Edit Profile</a></h4>
   <h1>Name: {{profile.user}}</h1>
   <h1>Bio: {{profile.bio}}</h1>
   <h1>Location: {{profile.location}}</h1>
   <h1>Phone number: {{profile.phone}}</h1>
+  <div>
 </div>
 <hr>
 
-<!-- curently not working, will implement later for specific user profile -->
 
 
 {% endblock %}

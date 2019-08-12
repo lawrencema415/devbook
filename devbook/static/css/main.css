@@ -103,9 +103,11 @@ body    {
     background-image:none !important;
     background-color: cornflowerblue !important;
     font-size: 30px !important;
+    color: black !important;
 }
 
 .stripe-button-el {
     margin-left: 40% !important;
     margin-right: 40% !important;
+    margin-bottom: 60px;
 }

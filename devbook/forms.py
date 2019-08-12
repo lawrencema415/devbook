@@ -39,3 +39,9 @@ class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
         fields = ('topic','message')
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('bio', 'location', 'phone')
