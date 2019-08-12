@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Donation</title>
-</head>
-<body>
-        <h2>Donate $5.00 to Devbook</h2>
+{% extends 'base.html' %}
+{% block content %}
+
+
+<h2 class="donate">Donate $5.00 to Devbook</h2>
+<img class="donate-image" src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" alt="Do something great">
 <form action="{% url 'homepage' %}" method="post">
   {% csrf_token %}
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -17,5 +13,7 @@
         data-locale="auto">
 </script>
 </form>
-</body>
-</html>
+
+
+
+{% endblock %}
