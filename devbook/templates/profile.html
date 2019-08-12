@@ -16,7 +16,7 @@
   <a href="{% url 'mail' pk=profile.pk %}">Message user</a>
   {% endif %}
   <div class="profile-body">
-  {% if profile.user == request.user %}
+  {% if user.pk == profile.user.pk %}
   <h4><a href="{% url 'user_profile_edit' pk=profile.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
   {% endif %}
   <h1>Name: {{profile.user}}</h1>

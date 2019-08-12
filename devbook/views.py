@@ -141,9 +141,17 @@ def user_profile_edit(request, pk):
     return render(request, 'user_form.html', {'form': form, 'header': f'Edit Profile'})
 
 def search(request):
-    profile = Profile.objects.all()
+    name = request.POST['name']
+    user = User.objects.filter(first_name__icontains=name)
+    if name is not "":
+        profile = []
+        for user in user:
+            if Profile.objects.get(user=user):
+                profile.append(Profile.objects.get(user=user))
+    else:
+        profile = Profile.objects.all()
     profile_form = ProfileForm()
-    return render(request, 'search.html',{"profile":profile,"profile_form":profile_form })
+    return render(request, 'search.html',{"profile":profile})
 
 @login_required
 def get_mail(request,pk):
@@ -163,7 +171,8 @@ def send_mail(request,pk):
         if form.is_valid():
             user = request.user
             user = User.objects.get(id=user.pk)
-            receiver = User.objects.get(id=pk)
+            profile = Profile.objects.get(id=pk)
+            receiver = User.objects.get(id=profile.user.pk)
             message = form.save(commit=False)
             message.sender = user
             message.receiver = receiver
