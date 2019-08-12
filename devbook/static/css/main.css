@@ -1,18 +1,25 @@
 body    {
     font-family: 'Roboto', sans-serif;
-    background-image: url(https://images.unsplash.com/photo-1505238680356-667803448bb6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);
+    background: #073642;
     color: white;
     background-size: cover;
     background-repeat: no-repeat;
 
 }
+.post-body{
+    margin: 5% 0 0 25%;
+}
 
 .card {
-    background-color: darkslategray;
+    background-color: #d8d2c1;
+    border-radius: 15px;
+    color: grey;
+    margin: 5px;
 }
 
 .box {
-    background-color: wheat;
+    background-color: #faf3e0;
+    color: #b54b00;
 }
 
 .greeting {
@@ -28,50 +35,58 @@ body    {
     margin-right: auto;
 }
 
-.input-post {
-    margin-bottom: 10px;
-    padding: 30px 80px;
-    background-color: gray;
-    color: black;
-    word-wrap: normal;
-    border: 5px solid darkgrey;
-    border-radius: 10%;
+.is-4{
+    color: #002b36;
 }
 
-.input-post::placeholder {
-    color: black;
+.post-text {
+    background-color: #faf3e0;
+    color: #cb4c16;
+    font-weight: bold;
+    /* padding: 10px; */
+    border-radius: 10px;
+}
+.input-post {
+    margin-bottom: 10px;
+    /* padding: 30px 100px; */
+    background-color: #d8d2c1;
+    color: #268ad2;
+    font-size: 1.5em;
+    word-wrap: normal;
+    border: 5px solid darkgrey;
+    border-radius: 15px;
+    
 }
 
 .input-comment {
-    text-align: center;
-    padding: 30px 40%;
+    text-align: left;
+    /* padding: 30px 40%; */
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: gray;
-    color: black;
+    font-size: 1.2em;
+    margin: 0;
+    background-color: #faf3e0;
+    color: #b54b00;
     word-wrap: normal;
-    border: 5px solid darkgray;
-    border-radius: 10%;
+    border-radius: 10px;
 }
 
-.input-comment::placeholder {
-    color: black;
-}
-
-.button {
-    background-color: dodgerblue;
-    color: white;
+.comment-button{
+    background: #268ad2;
+    color: whitesmoke;
     text-align: center;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
 }
 
-
-.text {
-    background-color: white;
+.post-button{
+    background: #879494;
+    color: whitesmoke;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    display: block;
     padding: 10px;
+    border-radius: 15px;
 }
 
 .nav-link img {
