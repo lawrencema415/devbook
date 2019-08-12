@@ -84,3 +84,28 @@ body    {
 .profile-body {
     color: white;
 }
+
+.donate {
+    font-size: 50px;
+    text-align: center;
+}
+
+.donate-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+    height: 100%;
+}
+
+.stripe-button-el span {
+    background: cornflowerblue !important;
+    background-image:none !important;
+    background-color: cornflowerblue !important;
+    font-size: 30px !important;
+}
+
+.stripe-button-el {
+    margin-left: 40% !important;
+    margin-right: 40% !important;
+}
