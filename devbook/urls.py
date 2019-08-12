@@ -21,7 +21,8 @@ urlpatterns = [
     path('inbox/<int:pk>/message',views.get_mail,name='inbox'),
     path('inbox/<int:pk>/createmail',views.mail,name='mail'),
     path('inbox/<int:pk>/send',views.send_mail,name='send_mail'),
-    path('inbox/<int:pk>/delete',views.delete_mail,name='delete_mail')
+    path('inbox/<int:pk>/delete',views.delete_mail,name='delete_mail'),
+    path('news',views.news,name='news')
 ]
 
 if settings.DEBUG:

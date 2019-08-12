@@ -44,6 +44,7 @@
 				</figure>
 			</div>
 			<a class="navbar-item" href="{% url 'profile' %}">{{user}}</a>
+			<a class="navbar-item" href="{% url 'news' %}">News</a>
 			<a class="navbar-item" href="{% url 'homepage' %}"><i class="fas fa-home" style="font-size: 25px;"></i></a>
 				{% if user.is_authenticated %}
 				<a class="navbar-item" href="{% url 'inbox' pk=request.user.pk %}"><i class="fas fa-envelope" style="font-size: 25px;"></i></a>

@@ -185,3 +185,6 @@ def send_mail(request,pk):
 def delete_mail(request,pk):
     Message.objects.get(pk=pk).delete()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def news(request):
+    return render(request,'news.html')
