@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import Post, Comment, Like, Profile, Friend
+from .models import Post, Comment, Like, Profile, Friend, Message
 from django.contrib.auth.decorators import login_required
-from .forms import PostForm, CommentForm, ProfileForm, LikeForm
+from .forms import PostForm, CommentForm, ProfileForm, LikeForm, MessageForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
@@ -132,3 +132,17 @@ def search(request):
     profile = Profile.objects.all()
     profile_form = ProfileForm()
     return render(request, 'search.html',{"profile":profile,"profile_form":profile_form })
+
+@login_required
+def get_mail(request,pk):
+    user = User.objects.get(id=pk)
+    messages = Message.objects.filter(receiver=user)
+    return render(request, 'inbox.html',{"messages":messages})
+
+@login_required
+def send_mail(request,pk):
+    if request.method == 'POST':
+        user = User.objects.get(id=pk)
+        form = MessageForm(request.POST)
+        message = form.save(commit=False)
+        

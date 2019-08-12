@@ -16,7 +16,8 @@ urlpatterns = [
     path('comment/<int:pk>/edit', views.comment_edit, name="comment_edit"),
     path('comment/<int:pk>/delete', views.delete_comment, name="delete_comment"),
     path('profile/<int:pk>/view', views.user_prof, name='user_prof'),
-    path('search/',views.search,name='search')
+    path('search/',views.search,name='search'),
+    path('inbox/<int:pk>/message',views.get_mail,name='inbox')
 ]
 
 if settings.DEBUG:

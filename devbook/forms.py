@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Comment, Like, Profile
+from .models import Post, Comment, Like, Profile, Message
 # bounding form to post model
 class PostForm(forms.ModelForm):
 
@@ -34,3 +34,8 @@ class LikeForm(forms.ModelForm):
     class Meta:
         model = Like
         fields = ('liked',)
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ('topic','message')
