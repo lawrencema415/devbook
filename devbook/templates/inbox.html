@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
+<a href="#">New message</a>
 {% for message in messages %}
 <h1>{{message.topic}}</h1>
-
-{% end for %}
+<div class="card">
+  <h1>Topic: {{message.topic}}</h1>
+  <h2>Message: ...</h2>
+</div>
+<hr>
+{% endfor %}
 {% endblock %}
