@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'devbook',
     'accounts',
     'payments.apps.PaymentsConfig',
-    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

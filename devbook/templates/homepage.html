@@ -33,18 +33,15 @@
             {% comment %} <p class="subtitle is-6">{{post.user}}</p> {% endcomment %}
           </div>
 
-          <div class="level">
-            <div class="level-item has-text-centered">
+          <div class="level level-right">
+            <div class="level-item">
               <div>
                 {% if post.user == request.user %}
                 <h4><a href="{% url 'post_edit' pk=post.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
                 {% endif %}
               </div>
             </div>
-            <div class="level-item has-text-centered">
-              <P> ... </P>
-            </div>
-            <div class="level-item has-text-centered">
+            <div class="level-item">
               <div>
                 {% if post.user == request.user %}
                 <h4><a href="{% url 'post_delete' pk=post.pk %}"><i class="fas fa-trash-alt"></i></a></h4>

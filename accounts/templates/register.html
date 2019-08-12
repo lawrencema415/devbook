@@ -16,10 +16,14 @@
   <title>DevBook Registration</title>
 </head>
 <div class="bd-example is-paddingless">
-  <nav class="navbar is-link ">
+  <nav class="navbar has-background-black ">
     <div class="navbar-brand is-spaced" style="font-size:40px">
-      <a class="navbar-item " href="http://localhost:8000/">DevBook</a>
+        <a class="navbar-item" href="http://localhost:8000/">
+          <i class="fas fa-laptop-code brand"></i>
+            <h1 class="brand">DevBook</h1>
+          </a>
     </div>
+    
 ​
     <div id="navMenuColorlink-example" class="navbar-menu ">
       <div class="navbar-start ">
@@ -40,8 +44,8 @@
   </nav>
 </div>
 ​
-<body style="background: white">
-  <section class="form-section" style="margin-top: 3%;">
+<body>
+  <section class="form-section register-img">
     <form action="{% url 'register' %}" method="POST" class="register-form">
       {% csrf_token %}
       <div class="columns">
@@ -55,30 +59,30 @@
               </nav>
               <nav class="level">
                 <div class="level-left">First Name</div>
-                <div class="level-right"><input name="first_name" class="input is-info" type="text" placeholder="First Name"></div>
+                <div class="level-right"><input name="first_name" class="input is-black" type="text" placeholder="First Name"></div>
               </nav>
               <nav class="level">
                 <div class="level-left">Last Name</div>
-                <div class="level-right"><input name="last_name" class="input is-info" type="text" placeholder="Last Name"></div>
+                <div class="level-right"><input name="last_name" class="input is-black" type="text" placeholder="Last Name"></div>
               </nav>
               <nav class="level">
                 <div class="level-left">Username</div>
-                <div class="level-right"><input name="username" class="input is-info" type="text" placeholder="Username"></div>
+                <div class="level-right"><input name="username" class="input is-black" type="text" placeholder="Username"></div>
               </nav>
               <nav class="level">
                 <div class="level-left">Email</div>
-                <div class="level-right"><input name="email" class="input is-info" type="text" placeholder="Email"></div>
+                <div class="level-right"><input name="email" class="input is-black" type="text" placeholder="Email"></div>
               </nav>
               <nav class="level">
                 <div class="level-left">Password</div>
-                <div class="level-right"><input name="password" class="input is-info" type="password" placeholder="Password"></div>
+                <div class="level-right"><input name="password" class="input is-black" type="password" placeholder="Password"></div>
               </nav>
               <nav class="level">
                 <div class="level-left is-pulled-right">Confirm Password</div>
-                <div class="level-right"><input name="password2" class="input is-info" type="password" placeholder="Confirm Password"></div>
+                <div class="level-right"><input name="password2" class="input is-black" type="password" placeholder="Confirm Password"></div>
               </nav>
               <br /> <br />
-              <input class="button is-link is-rounded is-hovered is-pulled-right" type="submit" value="Register">
+              <input class="button is-white is-rounded is-hovered is-pulled-right" type="submit" value="Register">
             </div>
           </div>
         </div>
@@ -92,6 +96,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
-</body>
+
+  </body>
 ​
 </html>
