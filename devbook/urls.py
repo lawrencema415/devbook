@@ -20,7 +20,8 @@ urlpatterns = [
     path('search/',views.search,name='search'),
     path('inbox/<int:pk>/message',views.get_mail,name='inbox'),
     path('inbox/<int:pk>/createmail',views.mail,name='mail'),
-    path('inbox/<int:pk>/send',views.send_mail,name='send_mail')
+    path('inbox/<int:pk>/send',views.send_mail,name='send_mail'),
+    path('inbox/<int:pk>/delete',views.delete_mail,name='delete_mail')
 ]
 
 if settings.DEBUG:

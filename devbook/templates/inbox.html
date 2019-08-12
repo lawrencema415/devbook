@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-<a href="#">New message</a>
 {% for message in messages %}
 <h1>{{message.topic}}</h1>
+
 <div class="card profile-body">
+<h4><a href="{% url 'delete_mail' pk=message.pk %}">Delete Comment</a></h4>
   <h1>Topic: {{message.topic}}</h1>
   <h2>Message: {{message.message}}</h2>
 </div>
