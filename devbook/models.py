@@ -60,3 +60,13 @@ class Friend(models.Model):
     def unfriend(cls, current_user, new_friend):
         friend, created = cls.objects.get_or_create(current_user=current_user)
         friend.users.remove(new_friend)
+
+class Message(models.Model):
+    sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="sender")
+    receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name="receiver")
+    topic = models.CharField(max_length=100,default="")
+    message = models.TextField(default="")
+    time_posted = models.DateTimeField(default=datetime.now())
+
+    def __str__(self):
+        return self.topic

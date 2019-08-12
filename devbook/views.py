@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import Post, Comment, Like, Profile, Friend
+from .models import Post, Comment, Like, Profile, Friend, Message
 from django.contrib.auth.decorators import login_required
-from .forms import PostForm, CommentForm, ProfileForm, LikeForm
+from .forms import PostForm, CommentForm, ProfileForm, LikeForm, MessageForm, UserProfileForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
@@ -27,6 +27,7 @@ def friends(request):
     profile = Profile.objects.all()
     return render(request, 'homepage.html',{'form':form,'posts':posts,'commentForm':commentForm,'comments':comments, 'profile': profile, 'users':users})
 
+@login_required
 def profile(request):
     user = request.user
     posts = Post.objects.filter(user=user)
@@ -53,7 +54,7 @@ def profile_edit(request):
     else:
         return redirect('profile')
 
-
+@login_required
 def post_body(request):
     form = PostForm(request.POST)
     if form.is_valid():
@@ -78,6 +79,7 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'post_form.html', {'form': form, 'header': f'Edit Post'})
 
+@login_required
 def post_comment(request,pk):
     post = Post.objects.get(id=pk)
     if request.method == 'POST':
@@ -126,7 +128,46 @@ def user_prof(request,pk):
     profile_form = ProfileForm()
     return render(request, 'userprofile.html',{"profile":profile,"profile_form":profile_form })
 
+@login_required
+def user_profile_edit(request, pk):
+    profile = Profile.objects.get(id=pk)
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            profile = form.save()
+            return redirect('profile')
+    else:
+        form = UserProfileForm(instance=profile)
+    return render(request, 'user_form.html', {'form': form, 'header': f'Edit Profile'})
+
 def search(request):
     profile = Profile.objects.all()
     profile_form = ProfileForm()
     return render(request, 'search.html',{"profile":profile,"profile_form":profile_form })
+
+@login_required
+def get_mail(request,pk):
+    user = User.objects.get(id=pk)
+    messages = Message.objects.filter(receiver=user)
+    return render(request, 'inbox.html',{"messages":messages})
+
+def mail(request,pk):
+    messageForm = MessageForm()
+    profile = Profile.objects.filter(id=pk)
+    return render(request, 'send_mail.html',{"profile":profile,"messageForm":messageForm})
+
+@login_required
+def send_mail(request,pk):
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            user = request.user
+            user = User.objects.get(id=user.pk)
+            receiver = User.objects.get(id=pk)
+            message = form.save(commit=False)
+            message.sender = user
+            message.receiver = receiver
+            message.save()
+            profile = Profile.objects.get(id=pk)
+            profile_form = ProfileForm()
+            return render(request, 'userprofile.html',{"profile":profile,"profile_form":profile_form })

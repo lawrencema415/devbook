@@ -5,16 +5,32 @@
 <form class="" action="{% url 'profile_edit' %}" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{profile_form}}
-  <input type="submit" value="Change" />
+  <input type="submit" value="Submit" />
 </form>
 
 <div class="card">
-  <a href="{% url 'user_prof' pk=profile.pk %}">My profile</a>
+  <div class="card">
+  <div class="media-left">
+  <div>
+  {% if user.pk != profile.user.pk  %}
+  <a href="{% url 'mail' pk=profile.pk %}">Message user</a>
+  {% endif %}
+  <div class="profile-body">
+  {% if profile.user == request.user %}
+  <h4><a href="{% url 'user_profile_edit' pk=profile.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
+  {% endif %}
+  <h1>Name: {{profile.user}}</h1>
+  <h1>Bio: {{profile.bio}}</h1>
+  <h1>Location: {{profile.location}}</h1>
+  <h1>Phone number: {{profile.phone}}</h1>
+  <div>
 </div>
-<form class="" action="{% url 'post_body' %}" method="post" style="margin-top: 7%;text-align:center">
+<hr>
+</div>
+<form class="post-body" action="{% url 'post_body' %}" method="post">
   {% csrf_token%}
   {{form.as_p}}
-  <button class="button" type="submit" name="button">Post</button>
+  <button class="post-button" type="submit" name="button">Post</button>
 </form>
 
 
@@ -43,20 +59,16 @@
     </div>
     <div class="content">
       {% if post.user == request.user %}
+      <h4><a href="{% url 'post_edit' pk=post.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
       <h4><a href="{% url 'post_delete' pk=post.pk %}">Delete Post</a></h4>
       {% endif %}
-      <p class="text">
+      <p class="post-text">
         {{post.body}}
       </p>
       <nav class="level is-mobile">
         <div class="level-left">
-          <a class="level-item" aria-label="reply">
-            <span class="icon is-small">
-              <i class="fas fa-reply" aria-hidden="true"></i>
-            </span>
-          </a>
           <a class="level-item" aria-label="like">
-            <span class="icon is-small">
+            <span class="icon is-small has-text-link">
               <i class="fas fa-heart" aria-hidden="true"></i>
             </span>
           </a>
@@ -69,6 +81,7 @@
       {% if post == comment.post %}
       <div class="box">
         {% if comment.user == request.user %}
+        <h4><a href="{% url 'comment_edit' pk=comment.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
         <h4><a href="{% url 'delete_comment' pk=comment.pk %}">Delete Comment</a></h4>
         {% endif %}
         <article class="media">
@@ -101,7 +114,7 @@
       <form class="" action="{% url 'post_comment' pk=post.pk %}" method="post">
         {% csrf_token%}
         {{commentForm.as_p}}
-        <button class="button" type="submit" name="button">Comment</button>
+        <button class="button comment-button" type="submit" name="button">Comment</button>
       </form>
     </div>
   </div>
