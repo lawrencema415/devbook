@@ -3,9 +3,9 @@
 <a href="#">New message</a>
 {% for message in messages %}
 <h1>{{message.topic}}</h1>
-<div class="card">
+<div class="card profile-body">
   <h1>Topic: {{message.topic}}</h1>
-  <h2>Message: ...</h2>
+  <h2>Message: {{message.message}}</h2>
 </div>
 <hr>
 {% endfor %}
