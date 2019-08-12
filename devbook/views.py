@@ -139,9 +139,23 @@ def get_mail(request,pk):
     messages = Message.objects.filter(receiver=user)
     return render(request, 'inbox.html',{"messages":messages})
 
+def mail(request,pk):
+    messageForm = MessageForm()
+    profile = Profile.objects.get(id=pk)
+    return render(request, 'send_mail.html',{"profile":profile,"messageForm":messageForm})
+
 @login_required
 def send_mail(request,pk):
     if request.method == 'POST':
-        user = User.objects.get(id=pk)
         form = MessageForm(request.POST)
-        message = form.save(commit=False)
+        if form.is_valid():
+            user = request.user
+            user = User.objects.get(id=user.pk)
+            receiver = User.objects.get(id=pk)
+            message = form.save(commit=False)
+            message.sender = user
+            message.receiver = receiver
+            message.save()
+            profile = Profile.objects.get(id=pk)
+            profile_form = ProfileForm()
+            return render(request, 'userprofile.html',{"profile":profile,"profile_form":profile_form })
