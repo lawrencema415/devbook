@@ -12,11 +12,12 @@ User profile page
   {% if user.pk != profile.user.pk  %}
   <a href="#">Message user</a>
   {% endif %}
-  
+  <div class="profile-body">
   <h1>Name: {{profile.user}}</h1>
   <h1>Bio: {{profile.bio}}</h1>
   <h1>Location: {{profile.location}}</h1>
   <h1>Phone number: {{profile.phone}}</h1>
+  </div>
 </div>
 <hr>
 

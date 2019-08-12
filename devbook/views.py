@@ -145,4 +145,3 @@ def send_mail(request,pk):
         user = User.objects.get(id=pk)
         form = MessageForm(request.POST)
         message = form.save(commit=False)
-        

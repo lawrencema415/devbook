@@ -43,6 +43,7 @@
     </div>
     <div class="content">
       {% if post.user == request.user %}
+      <h4><a href="{% url 'post_edit' pk=post.pk %}">Edit Post</a></h4>
       <h4><a href="{% url 'post_delete' pk=post.pk %}">Delete Post</a></h4>
       {% endif %}
       <p class="text">
@@ -69,6 +70,7 @@
       {% if post == comment.post %}
       <div class="box">
         {% if comment.user == request.user %}
+        <h4><a href="{% url 'comment_edit' pk=comment.pk %}">Edit Comment</a></h4>
         <h4><a href="{% url 'delete_comment' pk=comment.pk %}">Delete Comment</a></h4>
         {% endif %}
         <article class="media">
