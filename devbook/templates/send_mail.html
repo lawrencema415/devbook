@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+New Message
+{% for profile in profile %}
+<div class="card">
+<form class="" action="{% url 'send_mail' pk=profile.pk %}" method="post">
+  {% csrf_token %}
+  Topic & Message {{messageForm}}
+  <input type="submit" name="send" placeholder="Send">
+</form>
+</div>
+{% endfor %}
+{% endblock %}

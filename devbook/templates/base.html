@@ -17,30 +17,17 @@
 </head>
 
 <div class="bd-example is-paddingless">
-	<nav class="navbar is-link">
+	<nav class="navbar is-black">
 		<div class="navbar-brand">
 			<a class="navbar-item" href="http://localhost:8000/">
-				DevBook
+			<i class="fas fa-laptop-code brand"></i>
+				<h1 class="brand">DevBook</h1>
 			</a>
-			<div class="field has-addons navbar-item">
-				<div class="control">
-					<input class="input" type="text" placeholder="Search">
-				</div>
-				<div class="control">
-					<a class="button is-info">
-						Search
-					</a>
-				</div>
-			</div>
-			<div>
-
-			</div>
-			<div class="profile-pic">
-				<figure class="image is-96x96">
-					<a class="nav-link" href="{% url 'profile' %}"><img class="is-rounded"
-							src="{{ user.profile.image.url }}" alt=""></a>
-				</figure>
-			</div>
+			<form class="navbar-item" action="{% url 'search' %}" method="post">
+				{% csrf_token %}
+				<input type="text" name="name" value="" placeholder="Search by name">
+				<input type="submit" name="" placeholder="Search">
+			</form>
 			<div class="navbar-burger burger" data-target="navMenuColorlink-example">
 				<span></span>
 				<span></span>
@@ -48,10 +35,24 @@
 			</div>
 		</div>
 		<div id="navMenuColorlink-example" class="navbar-menu">
-			<div class="navbar-start">
-				<a class="navbar-item" href="{% url 'homepage' %}">Home</a>
-				<a class="navbar-item" href="{% url 'login'%}">Log In</a>
+			<div class="navbar-end">
+				<div class="profile-pic">
+				<figure class="image is-96x96">
+					<a class="nav-link" href="{% url 'profile' %}"><img class="is-rounded"
+							src="{{ user.profile.image.url }}" alt=""></a>
+				</figure>
+			</div>
+
+			<a class="navbar-item" href="{% url 'homepage' %}">Home</a>
+				{% if user.is_authenticated %}
+				<a class="navbar-item" href="{% url 'inbox' pk=request.user.pk %}">Inbox</a>
+				<a class="navbar-item" href="{% url 'donation' %}">Donate</a>
 				<a class="navbar-item" href="{% url 'logout'%}">Log Out</a>
+				{% else %}
+				<a class="navbar-item" href="{% url 'register'%}">Register</a>
+				<a class="navbar-item" href="{% url 'login'%}">Log In</a>
+				{% endif %}
+
 			</div>
 		</div>
 	</nav>
@@ -61,10 +62,7 @@
 
 
 <body>
-	{% if user.is_authenticated %}
-	<h1 class="greeting">Welcome, {{user.first_name}}</h1>
-	<img class="profile-image" src="{{ user.profile.image.url }}" width="240" alt="" style="border-radius: 50%;">
-	{% endif %}
+
 	{% block content%}
 	{% endblock %}
 	<!-- 	JQUERY 	-->

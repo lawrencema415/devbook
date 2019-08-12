@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<h2 class="donate">Donate $5.00 to Devbook</h2>
+<img class="donate-image" src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80" alt="Do something great">
+<form action="{% url 'homepage' %}" method="post">
+  {% csrf_token %}
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key="{{ key }}"
+        data-description="DevBook Donation"
+        data-amount="500"
+        data-locale="auto">
+</script>
+</form>
+
+
+
+{% endblock %}
