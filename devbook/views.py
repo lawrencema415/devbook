@@ -153,7 +153,7 @@ def get_mail(request,pk):
 
 def mail(request,pk):
     messageForm = MessageForm()
-    profile = Profile.objects.get(id=pk)
+    profile = Profile.objects.filter(id=pk)
     return render(request, 'send_mail.html',{"profile":profile,"messageForm":messageForm})
 
 @login_required
