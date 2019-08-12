@@ -32,8 +32,8 @@
         </div>
         <div class="content">
           {% if post.user == request.user %}
-          <h4><a href="{% url 'post_edit' pk=post.pk %}">Edit Post</a></h4>
-          <h4><a href="{% url 'post_delete' pk=post.pk %}">Delete Post</a></h4>
+          <h4><a href="{% url 'post_edit' pk=post.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
+          <h4><a href="{% url 'post_delete' pk=post.pk %}"><i class="fas fa-trash-alt"></i></a></h4>
           {% endif %}
           <p class="text">
             {{post.body}}
@@ -80,8 +80,8 @@
                     <strong>{{comment.user}}</strong> <small>{{comment.time_posted}}</small>
                     <br>
                     {% if comment.user == request.user %}
-                    <h4><a href="{% url 'comment_edit' pk=comment.pk %}">Edit Comment</a></h4>
-                    <h4><a href="{% url 'delete_comment' pk=comment.pk %}">Delete Comment</a></h4>
+                    <h4><a href="{% url 'comment_edit' pk=comment.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
+                    <h4><a href="{% url 'delete_comment' pk=comment.pk %}"><i class="fas fa-trash-alt"></i></a></h4>
                     {% endif %}
                     {{comment.body}}
                   </p>
