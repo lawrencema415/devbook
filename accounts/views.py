@@ -32,7 +32,7 @@ def register(request):
                     newProfile.save()
                     send_mail(
                         'Welcome to DevBook!',
-                        '<h1>Thank you for registering to DevBook.</h1><img src="https://images.unsplash.com/photo-1561152820-340780bc049e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=80" alt="laptop" width="200"/><h1>DevBook is a Social media platform that allows you to interact with other developers. Ask for help, help others, and make connections!</h1>',
+                        'Thank you for registering to DevBook. DevBook is a Social media platform that allows you to interact with other developers. Ask for help, help others, and make connections!',
                         settings.EMAIL_HOST_USER,
                         [user.email, settings.EMAIL_HOST_USER],
                         fail_silently=True
