@@ -163,7 +163,8 @@ def send_mail(request,pk):
         if form.is_valid():
             user = request.user
             user = User.objects.get(id=user.pk)
-            receiver = User.objects.get(id=pk)
+            profile = Profile.objects.get(id=pk)
+            receiver = User.objects.get(id=profile.user.pk)
             message = form.save(commit=False)
             message.sender = user
             message.receiver = receiver
