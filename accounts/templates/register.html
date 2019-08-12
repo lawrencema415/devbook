@@ -1,7 +1,6 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-​
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,36 +14,35 @@
   <link rel="stylesheet" href="{% static 'css/main.css' %}" />
   <title>DevBook Registration</title>
 </head>
-<div class="bd-example is-paddingless">
-  <nav class="navbar has-background-black ">
-    <div class="navbar-brand is-spaced" style="font-size:40px">
+
+<body id="main-body">
+  <div class="bd-example is-paddingless">
+    <nav class="navbar has-background-black ">
+      <div class="navbar-brand is-spaced" style="font-size:40px">
         <a class="navbar-item" href="http://localhost:8000/">
           <i class="fas fa-laptop-code brand"></i>
-            <h1 class="brand">DevBook</h1>
-          </a>
-    </div>
-    
-​
-    <div id="navMenuColorlink-example" class="navbar-menu ">
-      <div class="navbar-start ">
-        <form action="{% url 'login' %}" method="POST" class="login-form">
-          {% csrf_token %}
-          <p>
-            <label for="username">Username</label>
-            <input type="text" name="username" required maxlength="25" minlength="2">
-          </p>
-          <p>
-            <label for="password">Password</label>
-            <input type="password" name="password" required maxlength="25" minlength="4">
-          </p>
-          <button type="submit">Log In</button>
-        </form>
+          <h1 class="brand">DevBook</h1>
+        </a>
       </div>
-    </div>
-  </nav>
-</div>
-​
-<body>
+      <div id="navMenuColorlink-example" class="navbar-menu ">
+        <div class="navbar-start ">
+          <form action="{% url 'login' %}" method="POST" class="login-form">
+            {% csrf_token %}
+            <p>
+              <label for="username">Username</label>
+              <input class="username-input" type="text" name="username" required maxlength="25" minlength="2">
+            </p>
+            <p>
+              <label for="password">Password</label>
+              <input class="password-input" type="password" name="password" required maxlength="25" minlength="4">
+            </p>
+            <button type="submit">Log In</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="register-background">
   <section class="form-section register-img">
     <form action="{% url 'register' %}" method="POST" class="register-form">
       {% csrf_token %}
@@ -59,27 +57,33 @@
               </nav>
               <nav class="level">
                 <div class="level-left">First Name</div>
-                <div class="level-right"><input name="first_name" class="input is-black" type="text" placeholder="First Name"></div>
+                <div class="level-right"><input name="first_name" class="input is-black" type="text"
+                    placeholder="First Name"></div>
               </nav>
               <nav class="level">
                 <div class="level-left">Last Name</div>
-                <div class="level-right"><input name="last_name" class="input is-black" type="text" placeholder="Last Name"></div>
+                <div class="level-right"><input name="last_name" class="input is-black" type="text"
+                    placeholder="Last Name"></div>
               </nav>
               <nav class="level">
                 <div class="level-left">Username</div>
-                <div class="level-right"><input name="username" class="input is-black" type="text" placeholder="Username"></div>
+                <div class="level-right"><input name="username" class="input is-black" type="text"
+                    placeholder="Username"></div>
               </nav>
               <nav class="level">
                 <div class="level-left">Email</div>
-                <div class="level-right"><input name="email" class="input is-black" type="text" placeholder="Email"></div>
+                <div class="level-right"><input name="email" class="input is-black" type="text" placeholder="Email">
+                </div>
               </nav>
               <nav class="level">
                 <div class="level-left">Password</div>
-                <div class="level-right"><input name="password" class="input is-black" type="password" placeholder="Password"></div>
+                <div class="level-right"><input name="password" class="input is-black" type="password"
+                    placeholder="Password"></div>
               </nav>
               <nav class="level">
                 <div class="level-left is-pulled-right">Confirm Password</div>
-                <div class="level-right"><input name="password2" class="input is-black" type="password" placeholder="Confirm Password"></div>
+                <div class="level-right"><input name="password2" class="input is-black" type="password"
+                    placeholder="Confirm Password"></div>
               </nav>
               <br /> <br />
               <input class="button is-white is-rounded is-hovered is-pulled-right" type="submit" value="Register">
@@ -89,7 +93,7 @@
       </div>
     </form>
   </section>
-​
+</div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -98,5 +102,5 @@
     crossorigin="anonymous"></script>
 
   </body>
-​
+
 </html>

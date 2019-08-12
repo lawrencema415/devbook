@@ -4,7 +4,7 @@ from datetime import datetime
 from PIL import Image
 # Create your models here.
 class Post(models.Model):
-    body = models.CharField(max_length=500,default='')
+    body = models.TextField(default='')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     time_posted = models.DateTimeField(default=datetime.now())
 
@@ -18,7 +18,7 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    body = models.CharField(max_length=500,default='')
+    body = models.TextField(default='')
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     time_posted = models.DateTimeField(default=datetime.now())

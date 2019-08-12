@@ -149,17 +149,18 @@
   </div>
 
   <div class="column">
-    <h3>Friends</h3>
 
     <div class="columns">
-      <div class="column">Auto</div>
+      <div class="column"></div>
       <div class="column is-four-fifths">
-        <div class="card">
+    <h3 style="margin-bottom: 12px; text-align: center;">Suggested Friends</h3>
+    {% for profile in profile %}
+        <div class="card" style="margin-bottom: 20px;">
           <div class="columns">
             <div class="column is-half">
               <div class="card-image">
                 <figure class="image is-96x96">
-                  <img src="{{ user.profile.image.url }}" alt="Image">
+                  <a href="{% url 'user_prof' pk=profile.pk %}"><img src="{{ profile.user.profile.image.url }}" alt="Image" style="width:100px;height:100px"></a>
                 </figure>
               </div>
             </div>
@@ -167,19 +168,19 @@
               <div class="card-content">
                 <div class="media">
                   <div class="media-content">
-                    <p class="title is-4">Best Friend 1</p>
-                    <p class="subtitle is-6">@bff1</p>
+                    <p class="title is-4"> {{profile.user.username}} </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        {% endfor %}
 
 
 
       </div>
-      <div class="column">Auto</div>
+      <div class="column"></div>
     </div>
   </div>
 </div>
