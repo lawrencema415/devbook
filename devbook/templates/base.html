@@ -44,6 +44,7 @@
 			</div>
 			<a class="navbar-item" href="{% url 'profile' %}">{{user}}</a>
 			<a class="navbar-item" href="{% url 'homepage' %}">Home</a>
+			<a class="navbar-item" href="{% url 'news'%}">News</a>
 				{% if user.is_authenticated %}
 				<a class="navbar-item" href="{% url 'inbox' pk=request.user.pk %}">Inbox</a>
 				<a class="navbar-item" href="{% url 'donation' %}">Donate</a>
@@ -72,6 +73,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
 		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
 		crossorigin="anonymous"></script>
+
 </body>
 
 </html>
