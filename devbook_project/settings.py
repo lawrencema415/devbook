@@ -52,8 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'devbook',
     'accounts',
-    'payments.apps.PaymentsConfig',
-    'widget_tweaks',
+    'payments.apps.PaymentsConfig'
 ]
 
 MIDDLEWARE = [
@@ -137,6 +136,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'media') 
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
