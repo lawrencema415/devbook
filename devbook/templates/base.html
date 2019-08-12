@@ -13,6 +13,7 @@
 	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 	<!-- 	our CSS 	-->
 	<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+	<link rel="icon" type="image/png" href="../../media/favicon/devbook icon.png">
 	<title>DevBook</title>
 </head>
 
@@ -20,7 +21,7 @@
 	<nav class="navbar is-black">
 		<div class="navbar-brand">
 			<a class="navbar-item" href="http://localhost:8000/">
-			<i class="fas fa-laptop-code brand"></i>
+			<i class="fab fa-connectdevelop" style="font-size: 40px;"></i>
 				<h1 class="brand">DevBook</h1>
 			</a>
 			<form class="navbar-item" action="{% url 'search' %}" method="post">
@@ -43,10 +44,10 @@
 				</figure>
 			</div>
 			<a class="navbar-item" href="{% url 'profile' %}">{{user}}</a>
-			<a class="navbar-item" href="{% url 'homepage' %}">Home</a>
+			<a class="navbar-item" href="{% url 'homepage' %}"><i class="fas fa-home" style="font-size: 25px;"></i></a>
 				{% if user.is_authenticated %}
-				<a class="navbar-item" href="{% url 'inbox' pk=request.user.pk %}">Inbox</a>
-				<a class="navbar-item" href="{% url 'donation' %}">Donate</a>
+				<a class="navbar-item" href="{% url 'inbox' pk=request.user.pk %}"><i class="fas fa-envelope" style="font-size: 25px;"></i></a>
+				<a class="navbar-item" href="{% url 'donation' %}"><i class="fas fa-hand-holding-usd" style="font-size: 25px;"></i></a>
 				<a class="navbar-item" href="{% url 'logout'%}">Log Out</a>
 				{% else %}
 				<a class="navbar-item" href="{% url 'register'%}">Register</a>

@@ -9,18 +9,12 @@ class PostForm(forms.ModelForm):
         labels = {
         "body": ""
         }
-        widgets = {
-            'body': forms.TextInput(attrs={'placeholder': "What's on your mind?", 'class': 'input-post'})
-        }
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('body',)
         labels = {
             "body": ""
-        }
-        widgets = {
-            'body': forms.TextInput(attrs={'placeholder': 'Write a comment...', 'class': 'input-comment'})
         }
 
 

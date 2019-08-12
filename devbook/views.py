@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 
 # Create your views here.
+@login_required
 def homepage(request):
     posts = Post.objects.all().order_by('-time_posted')
     form = PostForm()
@@ -180,3 +181,7 @@ def send_mail(request,pk):
             profile = Profile.objects.get(id=pk)
             profile_form = ProfileForm()
             return render(request, 'userprofile.html',{"profile":profile,"profile_form":profile_form })
+
+def delete_mail(request,pk):
+    Message.objects.get(pk=pk).delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
