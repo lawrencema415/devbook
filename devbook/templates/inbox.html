@@ -6,14 +6,13 @@
 
 {% endif %}
 {% for message in messages %}
-<h1>{{message.topic}}</h1>
 
 <div class="card profile-body messages">
 <h4><a href="{% url 'delete_mail' pk=message.pk %}">Delete</a></h4>
 <h4><a href="{% url 'reply_mail' pk=message.sender.pk %}">Reply</a></h4>
-  <h1>Topic: {{message.topic}}</h1>
-  <h3>From: {{message.sender}}</h3>
-  <h2>Message: {{message.message}}</h2>
+  <h1 class="profile-info" >Topic: {{message.topic}}</h1>
+  <h3 class="profile-info">From: {{message.sender}}</h3>
+  <h2 class="profile-info">Message: {{message.message}}</h2>
 </div>
 <hr>
 {% endfor %}
