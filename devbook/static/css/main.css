@@ -1,3 +1,12 @@
+* {
+    margin: 0;
+	padding: 0;
+	font-size: 100%;
+}
+
+html {
+    height: 100%;
+}
 body    {
     font-family: 'Roboto', sans-serif;
     background: #073642;
@@ -8,6 +17,7 @@ body    {
 }
 .post-body{
     margin: 5% 0 0 25%;
+    
 }
 
 .card {
@@ -19,7 +29,7 @@ body    {
 
 .box {
     background-color: #faf3e0;
-    color: #b54b00;
+    color: #268ad2;
 }
 
 .greeting {
@@ -41,10 +51,14 @@ body    {
 
 .post-text {
     background-color: #faf3e0;
-    color: #cb4c16;
+    color: #268ad2;
     font-weight: bold;
-    /* padding: 10px; */
+    padding: 10px;
     border-radius: 10px;
+}
+.post-text::placeholder{
+    background-color: #faf3e0;
+    color: #268ad2;
 }
 .input-post {
     margin-bottom: 10px;
@@ -57,6 +71,12 @@ body    {
     border-radius: 15px;
     
 }
+.input-post::placeholder {
+    background-color: #d8d2c1;
+    color: #268ad2;
+    font-size: 1em; 
+    padding: 10px;
+}
 
 .input-comment {
     text-align: left;
@@ -65,9 +85,14 @@ body    {
     font-size: 1.2em;
     margin: 0;
     background-color: #faf3e0;
-    color: #b54b00;
+    color: #268ad2;
     word-wrap: normal;
     border-radius: 10px;
+}
+.input-comment::placeholder{
+    color: #268ad2;
+    background-color: #faf3e0;
+    padding: 10px;
 }
 
 .comment-button{
@@ -87,6 +112,8 @@ body    {
     display: block;
     padding: 10px;
     border-radius: 15px;
+    position: relative;
+    left: 360px;
 }
 
 .nav-link img {
@@ -115,12 +142,12 @@ body    {
     text-align: center;
 }
 
-.donate-image {
+.donate-image{
+    width: 700px;  
+    height: auto;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 800px;
-    height: 100%;
 }
 
 .stripe-button-el span {
@@ -138,9 +165,38 @@ body    {
 }
 
 .title {
-    color: white;
+    color: black;
 }
 
+body {
+    height: 100%;
+}
+
+#main-body{
+    background-image: url(https://images.unsplash.com/photo-1554177255-61502b352de3);
+    /* background-image: url(/media/register.jpg) */
+    /* https://images.unsplash.com/photo-1554177255-61502b352de3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80 */
+}
+
+.login-form{
+    padding: 5px 5px 5px 25px;
+}
+.username-input, .password-input{
+    margin: 5px;
+}
+#id_body{
+    width: 400px;
+	height: 100px;
+    padding: 5px;
+    margin: 20px
+}
+
+.fa-search{
+    margin: 10px;
+}
+.profile-info{
+    color: black;
+    padding: 10px;
 #news-container {
     margin: 50px 50px 0 50px;
 }
