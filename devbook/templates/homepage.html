@@ -9,6 +9,9 @@
 <div class="columns">
   <div class="column is-two-thirds">
     <h3>Posts</h3>
+    {% if posts.count == 0 %}
+    <h1>No post available.. </h1>
+    {% endif %}
     {% for post in posts%}
     <div class="card">
       <div class="card-content">

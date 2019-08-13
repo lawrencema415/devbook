@@ -35,6 +35,9 @@
             <button class="post-button" type="submit" name="button">Post</button>
           </form>
           <h3>Posts</h3>
+          {% if posts.count == 0 %}
+          <h1>No post available.. </h1>
+          {% endif %}
           {% for post in posts%}
           <div class="card">
             <div class="card-content">
@@ -55,8 +58,8 @@
                     </div>
                     <div class="media-content">
                       <p class="title is-4">{{post.user}}</p>
-                      {% comment %} 
-                      <p class="subtitle is-6">{{post.user}}</p> 
+                      {% comment %}
+                      <p class="subtitle is-6">{{post.user}}</p>
                       {% endcomment %}
                     </div>
                   </div>
@@ -103,7 +106,7 @@
                         <div class="level-item">
                             <small>{{comment.time_posted}}</small>
                         </div>
-                        
+
                     </div>
                   <div class="level-item level-right">
                     <div class="level-item">
@@ -162,4 +165,3 @@
 </div>
 </div>
 {% endblock %}
-
