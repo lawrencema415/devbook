@@ -18,7 +18,7 @@ DevBook is a Social media platform that allows you to interact with other develo
 - [x] Home & About Pages
 - [x] Use of CSS and Bulma framework
 - [x] Responsive Design
-- [x] 1,285 commits
+- [x] 1,421+ commits
 
 *Flexible Technical Requirements*
 - [x] User Login
