@@ -180,7 +180,7 @@ def send_mail(request,pk):
             message.save()
             user = User.objects.get(id=pk)
             messages = Message.objects.filter(receiver=user)
-            return render(request, 'inbox.html',{"messages":messages})
+            return redirect('homepage')
 
 def reply_mail(request,pk):
     messageForm = MessageForm()
