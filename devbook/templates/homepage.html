@@ -10,7 +10,6 @@
   <div class="column is-two-thirds">
     <h3>Posts</h3>
     {% for post in posts%}
-
     <div class="card">
       <div class="card-content">
         <div class="media">
@@ -49,12 +48,6 @@
               </div>
             </div>
           </div>
-
-
-
-
-
-
         </div>
         <div class="content">
           <p class="post-text">
@@ -62,7 +55,6 @@
           </p>
           <nav class="level is-mobile">
             <div class="level-left">
-              
               <a class="level-item" aria-label="like">
                 <span class="icon is-small">
                   <i class="fas fa-heart" aria-hidden="true"></i>
@@ -107,36 +99,32 @@
                         <small>{{comment.time_posted}}</small>
                       </div>
                     </div>
-
                     <div class="level-right">
-                    <div class="level-item">
-                      <div>
-                        {% if comment.user == request.user %}
-                        <h4><a href="{% url 'comment_edit' pk=comment.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
-                        {% endif %}
+                      <div class="level-item">
+                        <div>
+                          {% if comment.user == request.user %}
+                          <h4><a href="{% url 'comment_edit' pk=comment.pk %}"><i class="fas fa-pencil-alt"></i></a>
+                          </h4>
+                          {% endif %}
+                        </div>
+                      </div>
+                      <div class="level-item">
+                        <div>
+                          {% if comment.user == request.user %}
+                          <h4><a href="{% url 'delete_comment' pk=comment.pk %}"><i class="fas fa-trash-alt"></i></a>
+                          </h4>
+                          {% endif %}
+                        </div>
                       </div>
                     </div>
-                    <div class="level-item">
-                      <div>
-                        {% if comment.user == request.user %}
-                        <h4><a href="{% url 'delete_comment' pk=comment.pk %}"><i class="fas fa-trash-alt"></i></a></h4>
-                        {% endif %}
-                      </div>
-                    </div>
-
                   </div>
-
-                  </div>
-                  <p>
-                    {{comment.body}}
-                  </p>
+                  <p>{{comment.body}} </p>
                 </div>
               </div>
             </article>
           </div>
           {% endif %}
           {% endfor %}
-
           <form class="" action="{% url 'post_comment' pk=post.pk %}" method="post">
             {% csrf_token%}
             {{commentForm.as_p}}
@@ -147,20 +135,19 @@
     </div>
     {% endfor %}
   </div>
-
   <div class="column">
-
     <div class="columns">
       <div class="column"></div>
       <div class="column is-four-fifths">
-    <h3 style="margin-bottom: 12px; text-align: center;">Suggested Friends</h3>
-    {% for profile in profile %}
+        <h3 style="margin-bottom: 12px; text-align: center;">Suggested Friends</h3>
+        {% for profile in profile %}
         <div class="card" style="margin-bottom: 20px;">
           <div class="columns">
             <div class="column is-half">
               <div class="card-image">
                 <figure class="image is-96x96">
-                  <a href="{% url 'user_prof' pk=profile.pk %}"><img src="{{ profile.user.profile.image.url }}" alt="Image" style="width:100px;height:100px"></a>
+                  <a href="{% url 'user_prof' pk=profile.pk %}"><img src="{{ profile.user.profile.image.url }}"
+                      alt="Image" style="width:100px;height:100px"></a>
                 </figure>
               </div>
             </div>
@@ -176,9 +163,6 @@
           </div>
         </div>
         {% endfor %}
-
-
-
       </div>
       <div class="column"></div>
     </div>
