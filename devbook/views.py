@@ -195,3 +195,7 @@ def delete_mail(request,pk):
 
 def news(request):
     return render(request,'news.html')
+
+
+def about(request):
+    return render(request, 'about.html')

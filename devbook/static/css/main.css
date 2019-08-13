@@ -263,3 +263,27 @@ color: cyan;
     height: 50px;
     width: 50px;
 }
+
+.aboutus {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.about-title {
+    font-size: 60px;
+    text-align: center;
+}
+
+th, td {
+    padding: 10px;
+}
+
+th {
+    text-align: center !important;
+    color: white !important;
+}
+
+tr {
+    text-align:center;
+}
