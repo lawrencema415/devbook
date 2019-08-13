@@ -2,11 +2,11 @@
 {% block content %}
 New Message
 {% for profile in profile %}
-<div class="card">
-<form class="" action="{% url 'send_mail' pk=profile.pk %}" method="post">
+<div class="card inbox">
+<form class="card inbox" action="{% url 'send_mail' pk=profile.pk %}" method="post">
   {% csrf_token %}
   Topic & Message {{messageForm}}
-  <input type="submit" name="send" placeholder="Send">
+  <input class="card inbox" type="submit" name="send" placeholder="Send">
 </form>
 </div>
 {% endfor %}
