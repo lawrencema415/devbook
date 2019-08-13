@@ -19,7 +19,7 @@ body    {
 }
 .post-body{
     margin: 5% 0 0 25%;
-    
+
 }
 
 .card {
@@ -71,12 +71,12 @@ body    {
     word-wrap: normal;
     border: 5px solid darkgrey;
     border-radius: 15px;
-    
+
 }
 .input-post::placeholder {
     background-color: #d8d2c1;
     color: #268ad2;
-    font-size: 1em; 
+    font-size: 1em;
     padding: 10px;
 }
 
@@ -145,7 +145,7 @@ body    {
 }
 
 .donate-image{
-    width: 700px;  
+    width: 700px;
     height: auto;
     display: block;
     margin-left: auto;
@@ -240,11 +240,18 @@ color: cyan;
     margin-right: auto;
 }
 
-.card .inbox {
+.inbox  *{
     display: block;
-    text-align: center;
 }
 
 .about {
     color: pink !important;
+}
+
+#message #id_message{
+  display: block;
+}
+
+#message #id_topic{
+  display: block;
 }
