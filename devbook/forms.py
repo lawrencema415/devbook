@@ -22,6 +22,7 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('image',)
+        
 
 class LikeForm(forms.ModelForm):
 

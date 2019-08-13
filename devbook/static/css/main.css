@@ -246,7 +246,8 @@ color: cyan;
 }
 
 .about {
-    color: pink !important;
+    color: white !important;
+    padding: 0px !important;
 }
 
 #message #id_message{
@@ -297,7 +298,8 @@ tr {
 }
 
 #logo-icon {
-  font-size: 40px;
+    font-size: 40px !important;
+    color: white !important;
 }
 
 #search-button {
@@ -311,8 +313,8 @@ tr {
   font-size: 25px;
 }
 
-footer {
-  padding: 0px;
+.footer {
+  padding: 0px !important;
 }
 
 #suggested-friend {
@@ -323,3 +325,15 @@ footer {
 #friend-card {
   margin-bottom: 20px;
 }
+
+
+#edit-image {
+    text-align: center;
+}
+
+
+#edit-image #id_image {
+    color: white;
+    background-color: black;
+    opacity: .6;
+} 
