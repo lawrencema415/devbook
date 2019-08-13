@@ -197,4 +197,42 @@ body {
 .profile-info{
     color: black;
     padding: 10px;
+#news-container {
+    margin: 50px 50px 0 50px;
+}
+
+.news {
+    margin-left: 15vw;
+    margin-right: 15vh;
+}
+
+.news-time {
+    margin-bottom: 20px;
+
+}
+
+.article {
+    margin-bottom: 70px;
+    font-size: 20px;
+}
+
+.news-title {
+    font-size: 60px;
+    text-align: center;
+    text-align: center;
+}
+#news-container a {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+#news-container a:hover {
+color: cyan;
+}
+
+.news-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

@@ -43,11 +43,12 @@
 							src="{{ user.profile.image.url }}" alt="image of user"></a>
 				</figure>
 			</div>
-			<a class="navbar-item" href="{% url 'profile' %}">{{user}}</a>
-			<a class="navbar-item" href="{% url 'homepage' %}"><i class="fas fa-home" style="font-size: 25px;"></i></a>
+			<a title="profile" class="navbar-item" href="{% url 'profile' %}">{{user}}</a>
+			<a class="navbar-item" href="{% url 'news' %}"><i class="far fa-newspaper" style="font-size: 25px;" title="News"></i></a>
+			<a class="navbar-item" href="{% url 'homepage' %}"><i class="fas fa-home" style="font-size: 25px;" title="Home"></i></a>
 				{% if user.is_authenticated %}
-				<a class="navbar-item" href="{% url 'inbox' pk=request.user.pk %}"><i class="fas fa-envelope" style="font-size: 25px;"></i></a>
-				<a class="navbar-item" href="{% url 'donation' %}"><i class="fas fa-hand-holding-usd" style="font-size: 25px;"></i></a>
+				<a class="navbar-item" href="{% url 'inbox' pk=request.user.pk %}"><i class="fas fa-envelope" style="font-size: 25px;" title="Inbox"></i></a>
+				<a class="navbar-item" href="{% url 'donation' %}"><i class="fas fa-hand-holding-usd" style="font-size: 25px;" title="Donate to DevBook"></i></a>
 				<a class="navbar-item" href="{% url 'logout'%}">Log Out</a>
 				{% else %}
 				<a class="navbar-item" href="{% url 'register'%}">Register</a>
