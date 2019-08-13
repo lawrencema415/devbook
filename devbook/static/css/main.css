@@ -13,7 +13,7 @@ body    {
     color: white;
     background-size: cover;
     background-repeat: no-repeat;
-
+    height: 100%;
 }
 .post-body{
     margin: 5% 0 0 25%;
@@ -168,10 +168,6 @@ body    {
     color: black;
 }
 
-body {
-    height: 100%;
-}
-
 #main-body{
     background-image: url(https://images.unsplash.com/photo-1554177255-61502b352de3);
     /* background-image: url(/media/register.jpg) */
@@ -240,4 +236,20 @@ color: cyan;
 .card .inbox {
     display: block;
     text-align: center;
+}
+#user-profile-page {
+    color: #268ad2;
+    font-size: 2em;
+}
+
+.title{
+    color: pink !important;
+    bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  z-index: 30;
+}
+.hero-body{
+    
 }
