@@ -178,9 +178,14 @@ def send_mail(request,pk):
             message.sender = user
             message.receiver = receiver
             message.save()
-            profile = Profile.objects.get(id=pk)
-            profile_form = ProfileForm()
-            return render(request, 'userprofile.html',{"profile":profile,"profile_form":profile_form })
+            user = User.objects.get(id=pk)
+            messages = Message.objects.filter(receiver=user)
+            return render(request, 'inbox.html',{"messages":messages})
+
+def reply_mail(request,pk):
+    messageForm = MessageForm()
+    profile = Profile.objects.filter(id=pk)
+    return render(request, 'send_mail.html',{"profile":profile,"messageForm":messageForm})
 
 def delete_mail(request,pk):
     Message.objects.get(pk=pk).delete()
