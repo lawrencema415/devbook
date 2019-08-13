@@ -3,7 +3,7 @@
 
 <img class="profile-image" src="{{ user.profile.image.url }}" width="240" alt="profile picture"
   style="border-radius: 50%;height:230px;">
-<form class="" action="{% url 'profile_edit' %}" method="post" enctype="multipart/form-data">
+<form id="edit-image" action="{% url 'profile_edit' %}" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{profile_form}}
   <input type="submit" value="Submit" />
@@ -19,7 +19,13 @@
           {% endif %}
           <div class="profile-body">
             {% if user.pk == profile.user.pk %}
+            <div class="level">
+              <div class="level-right">
+                <div class="level-item is-pulled-right">
             <h4><a href="{% url 'user_profile_edit' pk=profile.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
+                </div>
+              </div>
+          </div>
             {% endif %}
             <div class="profile-info">
               <h1>Name: {{profile.user}}</h1>

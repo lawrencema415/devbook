@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Post, Comment, Like, Profile, Friend, Message
+from .models import Post, Comment, Like, Profile, Message
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm, CommentForm, ProfileForm, LikeForm, MessageForm, UserProfileForm
 from django.contrib.auth.models import User
@@ -20,20 +20,10 @@ def homepage(request):
     suggested = Profile.objects.filter(~Q(id=request.user.pk))
     return render(request, 'homepage.html',{'form':form,'posts':posts,'commentForm':commentForm,'comments':comments, 'profile': profile, 'likes':likes,'likeForm':likeForm,'suggested':suggested})
 
-def friends(request):
-    posts = Post.objects.all()
-    form = PostForm()
-    commentForm = CommentForm()
-    comments = Comment.objects.all()
-    users = User.objects.all()
-    user = request.user
-    profile = Profile.objects.all()
-    return render(request, 'homepage.html',{'form':form,'posts':posts,'commentForm':commentForm,'comments':comments, 'profile': profile, 'users':users})
-
 @login_required
 def profile(request):
     user = request.user
-    posts = Post.objects.filter(user=user)
+    posts = Post.objects.filter(user=user).order_by('-time_posted')
     form = PostForm()
     commentForm = CommentForm()
     comments = Comment.objects.all()

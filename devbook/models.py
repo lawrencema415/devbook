@@ -46,21 +46,6 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.first_name
 
-#based on Max Goodridge's youtube tutorial Part 56
-class Friend(models.Model):
-    users = models.ManyToManyField(User)
-    current_user = models.ForeignKey(User, related_name='owner', null=True, on_delete=models.DO_NOTHING)
-
-    @classmethod
-    def befriend(cls, current_user, new_friend):
-        friend, created = cls.objects.get_or_create(current_user=current_user)
-        friend.users.add(new_friend)
-
-    @classmethod
-    def unfriend(cls, current_user, new_friend):
-        friend, created = cls.objects.get_or_create(current_user=current_user)
-        friend.users.remove(new_friend)
-
 class Message(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="sender")
     receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name="receiver")
