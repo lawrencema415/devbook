@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
+
+{% if messages.count == 0 %}
+<h1>You have no mail</h1>
+
+{% endif %}
 {% for message in messages %}
 
-<div class="card profile-body">
+<div class="card profile-body messages">
   <div class="inbox-delete" >
     <h4><a class="inbox-delete" href="{% url 'delete_mail' pk=message.pk %}"><i class="fas fa-trash-alt"></i></a></h4>
   </div>
   <div class="inbox-message" >
     <h1><b>Topic:</b> {{message.topic}}</h1>
+    <h3>From: {{message.sender}}</h3>
   </div>
   <div class="inbox-message" >
     <h2><b>Message:</b> {{message.message}}</h2>

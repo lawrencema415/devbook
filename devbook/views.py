@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import PostForm, CommentForm, ProfileForm, LikeForm, MessageForm, UserProfileForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
+from django.db.models import Q
 
 # Create your views here.
 @login_required
@@ -16,7 +17,8 @@ def homepage(request):
     user = request.user
     profile = Profile.objects.all()
     likes = Like.objects.all()
-    return render(request, 'homepage.html',{'form':form,'posts':posts,'commentForm':commentForm,'comments':comments, 'profile': profile, 'likes':likes,'likeForm':likeForm})
+    suggested = Profile.objects.filter(~Q(id=request.user.pk))
+    return render(request, 'homepage.html',{'form':form,'posts':posts,'commentForm':commentForm,'comments':comments, 'profile': profile, 'likes':likes,'likeForm':likeForm,'suggested':suggested})
 
 def friends(request):
     posts = Post.objects.all()
@@ -180,7 +182,7 @@ def send_mail(request,pk):
             message.save()
             user = User.objects.get(id=pk)
             messages = Message.objects.filter(receiver=user)
-            return render(request, 'inbox.html',{"messages":messages})
+            return redirect('homepage')
 
 def reply_mail(request,pk):
     messageForm = MessageForm()
@@ -193,3 +195,7 @@ def delete_mail(request,pk):
 
 def news(request):
     return render(request,'news.html')
+
+
+def about(request):
+    return render(request, 'about.html')

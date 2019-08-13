@@ -13,8 +13,6 @@
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <!-- 	our CSS 	-->
   <link rel="stylesheet" href="{% static 'css/main.css' %}" />
-  <!-- JS files -->
-  <script src="./devbook/static/scripts/filter.js"></script>
   <title>DevBook Registration</title>
 </head>
 
@@ -34,21 +32,27 @@
             <div class="level">
               <div class="level-left">
                 <div class="level-item">
-                  <input class="username-input" placeholder="Username" type="text" name="username" required
-                    maxlength="25" minlength="2">
+                  <div class="column is-mobile">
+                    <input class="username-input" placeholder="Username" type="text" name="username" required
+                      maxlength="25" minlength="2">
+                  </div>
                 </div>
                 <div class="level-item">
-                  <input class="password-input" type="password" placeholder="Password" name="password" required
-                    maxlength="25" minlength="4">
+                  <div class="column is-mobile">
+                    <input class="password-input" type="password" placeholder="Password" name="password" required
+                      maxlength="25" minlength="4">
+                  </div>
                 </div>
                 <div class="level-item">
-                  <input class="button is-white is-rounded is-hovered is-small" type="submit" value="Log In">
+                  <div class="column is-mobile">
+                    <input class="button is-white is-rounded is-hovered is-small" type="submit" value="Log In">
+                  </div>
+
                 </div>
               </div>
               <div class="level-right">
                 <div class="level-item is-pulled-right" style="margin: 30px">
-                  <p>Forgot your password? Click <a href="http://localhost:8000/accounts/password_reset/"> here </a> to
-                    reset it.
+                  <p>Forgot your password? Click <a href="{% url 'password_reset'%}"> here </a> to reset it.
                 </div>
               </div>
             </div>
@@ -61,7 +65,7 @@
     <section class="form-section register-img">
       <form action="{% url 'register' %}" method="POST" class="register-form">
         {% csrf_token %}
-        <div class="columns">
+        <div class="columns is-mobile">
           <div class="column is-one-fifth"></div>
           <div class="column is-one-third">
             <div class="field">
@@ -71,32 +75,32 @@
                   <div class="level-right"></div>
                 </nav>
                 <nav class="level">
-                  <div class="level-left">First Name</div>
+                  <!-- <div class="level-left">First Name</div> -->
                   <div class="level-right"><input name="first_name" class="input is-black" type="text"
                       placeholder="First Name"></div>
                 </nav>
                 <nav class="level">
-                  <div class="level-left">Last Name</div>
+                  <!-- <div class="level-left">Last Name</div> -->
                   <div class="level-right"><input name="last_name" class="input is-black" type="text"
                       placeholder="Last Name"></div>
                 </nav>
                 <nav class="level">
-                  <div class="level-left">Username</div>
+                  <!-- <div class="level-left">Username</div> -->
                   <div class="level-right"><input name="username" class="input is-black" type="text"
                       placeholder="Username"></div>
                 </nav>
                 <nav class="level">
-                  <div class="level-left">Email</div>
+                  <!-- <div class="level-left">Email</div> -->
                   <div class="level-right"><input name="email" class="input is-black" type="text" placeholder="Email">
                   </div>
                 </nav>
                 <nav class="level">
-                  <div class="level-left">Password</div>
+                  <!-- <div class="level-left">Password</div> -->
                   <div class="level-right"><input name="password" class="input is-black" type="password"
                       placeholder="Password"></div>
                 </nav>
                 <nav class="level">
-                  <div class="level-left is-pulled-right">Confirm Password</div>
+                  <!-- <div class="level-left is-pulled-right">Confirm Password</div> -->
                   <div class="level-right"><input name="password2" class="input is-black" type="password"
                       placeholder="Confirm Password"></div>
                 </nav>
@@ -115,7 +119,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
-  
+
 </body>
 
 </html>

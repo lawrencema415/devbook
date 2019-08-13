@@ -14,9 +14,9 @@
 	<!-- 	our CSS 	-->
 	<link rel="stylesheet" href="{% static 'css/main.css' %}" />
 	<link rel="icon" type="image/png" href="../../media/favicon/devbook icon.png">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 	<title>DevBook</title>
 </head>
-
 
 
 
@@ -74,16 +74,20 @@
 			<div class="hero-body">
 				<div class="container">
 					<h1 class="about">
-						DevBook © 2019
+						<a class="about" href="https://github.com/lawrencema415/devbook">DevBook</a> © 2019
 					</h1>
 					<h2 class="about">
-							<a class="about" href="">Lawrence Ma</a> | <a class="about" href="">Christian Villa</a> | <a class="about" href="">Alex Iliev</a>
+							<a class="about" href="https://github.com/lawrencema415">Lawrence Ma</a> | <a class="about" href="https://github.com/ChristianJVilla">Christian Villa</a> | <a class="about" href="https://github.com/ale-xander">Alex Iliev</a>
 					</h2>
+					<h4 class="about"> 
+						<a class="about" href="{% url 'about' %}">About Us</a>
+					</h4>
 				</div>
 			</div>
 		</section>
 		</div>
 	</div>
+
 	<!-- 	JQUERY 	-->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
