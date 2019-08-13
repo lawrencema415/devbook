@@ -11,7 +11,6 @@ urlpatterns = [
     path('post_url/',views.post_body,name='post_body'),
     path('post_comment/<int:pk>/comments/new',views.post_comment,name='post_comment'),
     path('like_post/<int:pk>/likes/new',views.like_post,name='like_post'),
-    path('friends/', views.profile, name='friends'),
     path('post/<int:pk>/edit', views.post_edit, name="post_edit"),
     path('post/<int:pk>/delete', views.post_delete, name="post_delete"),
     path('comment/<int:pk>/edit', views.comment_edit, name="comment_edit"),
@@ -20,7 +19,11 @@ urlpatterns = [
     path('search/',views.search,name='search'),
     path('inbox/<int:pk>/message',views.get_mail,name='inbox'),
     path('inbox/<int:pk>/createmail',views.mail,name='mail'),
-    path('inbox/<int:pk>/send',views.send_mail,name='send_mail')
+    path('inbox/<int:pk>/send',views.send_mail,name='send_mail'),
+    path('inbox/<int:pk>/delete',views.delete_mail,name='delete_mail'),
+    path('inbox/<int:pk>/reply',views.reply_mail,name='reply_mail'),
+    path('news',views.news,name='news'),
+    path('aboutus/', views.about, name="about")
 ]
 
 if settings.DEBUG:

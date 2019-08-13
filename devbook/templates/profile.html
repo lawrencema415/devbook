@@ -1,133 +1,173 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<img class="profile-image" src="{{ user.profile.image.url }}" width="240" alt="profile picture" style="border-radius: 50%;height:230px;">
-<form class="" action="{% url 'profile_edit' %}" method="post" enctype="multipart/form-data">
+<img class="profile-image" src="{{ user.profile.image.url }}" width="240" alt="profile picture"
+  style="border-radius: 50%;height:230px;">
+<form id="edit-image" action="{% url 'profile_edit' %}" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   {{profile_form}}
-  <input type="submit" value="Change" />
+  <input type="submit" value="Submit" />
 </form>
 
-<div class="card">
-  <div class="card">
-  <div class="media-left">
-  <div>
-  {% if user.pk != profile.user.pk  %}
-  <a href="{% url 'mail' pk=profile.pk %}">Message user</a>
-  {% endif %}
-  <div class="profile-body">
-  {% if user.pk == profile.user.pk %}
-  <h4><a href="{% url 'user_profile_edit' pk=profile.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
-  {% endif %}
-  <h1>Name: {{profile.user}}</h1>
-  <h1>Bio: {{profile.bio}}</h1>
-  <h1>Location: {{profile.location}}</h1>
-  <h1>Phone number: {{profile.phone}}</h1>
-  <div>
-</div>
-<hr>
-</div>
-<form class="" action="{% url 'post_body' %}" method="post" style="margin-top: 7%;text-align:center">
-  {% csrf_token%}
-  {{form.as_p}}
-  <button class="button" type="submit" name="button">Post</button>
-</form>
-
-
-
-<h3>Posts</h3>
-{% for post in posts%}
-
-<div class="card">
-  <div class="card-content">
-    <div class="media">
+<div class="columns">
+  <div class="column is-three-fifths">
+    <div class="card">
       <div class="media-left">
-        {% if post.user == request.user %}
-        <figure class="image is-64x64">
-          <a href="{% url 'user_prof' pk=post.user.pk %}"><img src="{{ user.profile.image.url }}" alt="Image" style="width:50px;height:50px"></a>
-        </figure>
-        {% else %}
-        <figure class="image is-64x64">
-          <img src="https://bulma.io/images/placeholders/96x96.png" alt="Image">
-        </figure>
-        {% endif %}
-      </div>
-      <div class="media-content">
-        <p class="title is-4">{{post.user}}</p>
-        {% comment %} <p class="subtitle is-6">{{post.user}}</p> {% endcomment %}
-      </div>
-    </div>
-    <div class="content">
-      {% if post.user == request.user %}
-      <h4><a href="{% url 'post_edit' pk=post.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
-      <h4><a href="{% url 'post_delete' pk=post.pk %}">Delete Post</a></h4>
-      {% endif %}
-      <p class="text">
-        {{post.body}}
-      </p>
-      <nav class="level is-mobile">
-        <div class="level-left">
-          <a class="level-item" aria-label="reply">
-            <span class="icon is-small">
-              <i class="fas fa-reply" aria-hidden="true"></i>
-            </span>
-          </a>
-          <a class="level-item" aria-label="like">
-            <span class="icon is-small">
-              <i class="fas fa-heart" aria-hidden="true"></i>
-            </span>
-          </a>
-        </div>
-      </nav>
-      <br>
-      <time datetime="2016-1-1"><small>{{post.time_posted}}</small></time>
-
-      {% for comment in comments%}
-      {% if post == comment.post %}
-      <div class="box">
-        {% if comment.user == request.user %}
-        <h4><a href="{% url 'comment_edit' pk=comment.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
-        <h4><a href="{% url 'delete_comment' pk=comment.pk %}">Delete Comment</a></h4>
-        {% endif %}
-        <article class="media">
-          <div class="media-left">
-            {% if comment.user == request.user %}
-            <figure class="image is-64x64">
-              <a href="{% url 'user_prof' pk=post.user.pk %}"><img src="{{ user.profile.image.url }}" alt="Image" style="width:50px;height:50px"></a>
-            </figure>
-            {% else %}
-            <figure class="image is-64x64">
-              <a href="{% url 'user_prof' pk=post.user.profile.user.pk %}"><img src="{{post.user.profile.image.url}}" alt="Image" tyle="width:50px;height:50px"></a>
-            </figure>
-            {% endif %}
+        <div>
+          {% if user.pk != profile.user.pk  %}
+          <a href="{% url 'mail' pk=profile.pk %}">Message user</a>
+          {% endif %}
+          <div class="profile-body">
+            {% if user.pk == profile.user.pk %}
+            <div class="level">
+              <div class="level-right">
+                <div class="level-item is-pulled-right">
+            <h4><a href="{% url 'user_profile_edit' pk=profile.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
+                </div>
+              </div>
           </div>
-          <div class="media-content">
-            <div class="content">
-              <p>
-                <strong>{{comment.user}}</strong> <small>{{comment.time_posted}}</small>
-                <br>
-                {{comment.body}}
-              </p>
+            {% endif %}
+            <div class="profile-info">
+              <h1>Name: {{profile.user}}</h1>
+              <h1>Bio: {{profile.bio}}</h1>
+              <h1>Location: {{profile.location}}</h1>
+              <h1>Phone number: {{profile.phone}}</h1>
+            </div>
+            <hr>
+          </div>
+          <form class="post-body" action="{% url 'post_body' %}" method="post">
+            {% csrf_token%}
+            {{form.as_p}}
+            <button class="post-button" type="submit" name="button">Post</button>
+          </form>
+          <h3>Posts</h3>
+          {% if posts.count == 0 %}
+          <h1>No post available.. </h1>
+          {% endif %}
+          {% for post in posts%}
+          <div class="card">
+            <div class="card-content">
+              <div class="level">
+                <div class="level-item level-left">
+                  <div class="media">
+                    <div class="media-left">
+                      {% if post.user == request.user %}
+                      <figure class="image is-64x64">
+                        <a href="{% url 'user_prof' pk=post.user.pk %}"><img src="{{ user.profile.image.url }}"
+                            alt="Image" style="width:50px;height:50px"></a>
+                      </figure>
+                      {% else %}
+                      <figure class="image is-64x64">
+                        <img src="https://bulma.io/images/placeholders/96x96.png" alt="Image">
+                      </figure>
+                      {% endif %}
+                    </div>
+                    <div class="media-content">
+                      <p class="title is-4">{{post.user}}</p>
+                      {% comment %}
+                      <p class="subtitle is-6">{{post.user}}</p>
+                      {% endcomment %}
+                    </div>
+                  </div>
+                </div>
+                <div class="level-item level-right">
+                  <div class="level-item">
+                    <div class="content">
+                      {% if post.user == request.user %}
+                      <h4><a href="{% url 'post_edit' pk=post.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <div class="level-item">
+                    <div class="content">
+                      {% if post.user == request.user %}
+                      <h4><a href="{% url 'post_delete' pk=post.pk %}"><i class="fas fa-trash-alt"></i></a></h4>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="test">
+                <p class="post-text">{{post.body}}</p>
+              </div>
+              <nav class="level is-mobile">
+                <div class="level-left">
+                  <a class="level-item" aria-label="like">
+                    <span class="icon is-small has-text-link" style="margin:10px">
+                      <i class="fas fa-heart" aria-hidden="true"></i>
+                    </span>
+                  </a>
+                </div>
+              </nav>
+              <br>
+              <time datetime="2016-1-1"><small>{{post.time_posted}}</small></time>
+              {% for comment in comments%}
+              {% if post == comment.post %}
+              <div class="box">
+                <div class="level">
+                    <div class="level-item level-left">
+                      <div class="level-item">
+                          <strong>{{comment.user}}</strong>
+                      </div>
+                        <div class="level-item">
+                            <small>{{comment.time_posted}}</small>
+                        </div>
+
+                    </div>
+                  <div class="level-item level-right">
+                    <div class="level-item">
+                      {% if comment.user == request.user %}
+                      <h4><a href="{% url 'comment_edit' pk=comment.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
+                      {% endif %}
+                    </div>
+                    <div class="level-item">
+                      {% if comment.user == request.user %}
+                      <h4><a href="{% url 'delete_comment' pk=comment.pk %}"><i class="fas fa-trash-alt"></i></a></h4>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+                <article class="media">
+                  <div class="media-left">
+                    {% if comment.user == request.user %}
+                    <figure class="image is-64x64">
+                      <a href="{% url 'user_prof' pk=post.user.pk %}"><img src="{{ user.profile.image.url }}"
+                          alt="Image" style="width:50px;height:50px"></a>
+                    </figure>
+                    {% else %}
+                    <figure class="image is-64x64">
+                      <a href="{% url 'user_prof' pk=post.user.profile.user.pk %}"><img
+                          src="{{post.user.profile.image.url}}" alt="Image" style="width:50px;height:50px"></a>
+                    </figure>
+                    {% endif %}
+
+                  </div>
+                  <div class="media-content">
+                    <div class="content">
+                      <p>{{comment.body}}</p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+              {% endif %}
+              {% endfor %}
+
+              <form class="" action="{% url 'post_comment' pk=post.pk %}" method="post">
+                {% csrf_token%}
+                {{commentForm.as_p}}
+                <button class="button comment-button" type="submit" name="button">Comment</button>
+              </form>
+
             </div>
 
-          </div>
-        </article>
-      </div>
-      {% endif %}
-      {% endfor %}
 
-      <form class="" action="{% url 'post_comment' pk=post.pk %}" method="post">
-        {% csrf_token%}
-        {{commentForm.as_p}}
-        <button class="button" type="submit" name="button">Comment</button>
-      </form>
+
+          </div>
+        </div>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </div>
-{% endfor %}
-
-
-
-
-
+</div>
 {% endblock %}

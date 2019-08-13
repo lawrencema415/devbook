@@ -1,18 +1,37 @@
+* {
+    margin: 0;
+	padding: 0;
+	font-size: 100%;
+}
+
+.register {
+    height: 100%;
+}
+
 body    {
     font-family: 'Roboto', sans-serif;
-    background-image: url(https://images.unsplash.com/photo-1505238680356-667803448bb6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);
+    background-image: url(https://images.unsplash.com/photo-1504610926078-a1611febcad3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2000&q=80);
     color: white;
     background-size: cover;
     background-repeat: no-repeat;
+    height: 100%;
+
+}
+.post-body{
+    margin: 5% 0 0 25%;
 
 }
 
 .card {
-    background-color: darkslategray;
+    background-color: #E3E5E8;
+    border-radius: 15px;
+    color: black;
+    margin: 5px;
 }
 
 .box {
-    background-color: wheat;
+    background-color: white;
+    color: black;
 }
 
 .greeting {
@@ -28,50 +47,76 @@ body    {
     margin-right: auto;
 }
 
-.input-post {
-    margin-bottom: 10px;
-    padding: 30px 80px;
-    background-color: gray;
-    color: black;
-    word-wrap: normal;
-    border: 5px solid darkgrey;
-    border-radius: 10%;
+.is-4{
+    color: #002b36;
+
 }
 
-.input-post::placeholder {
+.post-text {
+    background-color: white;
     color: black;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+}
+.post-text::placeholder{
+    background-color: #faf3e0;
+    color: #268ad2;
+}
+.input-post {
+    margin-bottom: 10px;
+    /* padding: 30px 100px; */
+    background-color: #d8d2c1;
+    color: #268ad2;
+    font-size: 1.5em;
+    word-wrap: normal;
+    border: 5px solid darkgrey;
+    border-radius: 15px;
+
+}
+.input-post::placeholder {
+    background-color: #d8d2c1;
+    color: #268ad2;
+    font-size: 1em;
+    padding: 10px;
 }
 
 .input-comment {
-    text-align: center;
-    padding: 30px 40%;
+    text-align: left;
+    /* padding: 30px 40%; */
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: gray;
-    color: black;
+    font-size: 1.2em;
+    margin: 0;
+    background-color: #faf3e0;
+    color: #268ad2;
     word-wrap: normal;
-    border: 5px solid darkgray;
-    border-radius: 10%;
+    border-radius: 10px;
+}
+.input-comment::placeholder{
+    color: #268ad2;
+    background-color: #faf3e0;
+    padding: 10px;
 }
 
-.input-comment::placeholder {
-    color: black;
-}
-
-.button {
-    background-color: dodgerblue;
-    color: white;
+.comment-button{
+    background: #268ad2;
+    color: whitesmoke;
     text-align: center;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
 }
 
-
-.text {
-    background-color: white;
+.post-button{
+    background: #879494;
+    color: whitesmoke;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    display: block;
     padding: 10px;
+    border-radius: 15px;
+    position: relative;
+    left: 360px;
 }
 
 .nav-link img {
@@ -100,12 +145,12 @@ body    {
     text-align: center;
 }
 
-.donate-image {
+.donate-image{
+    width: 700px;
+    height: auto;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 800px;
-    height: 100%;
 }
 
 .stripe-button-el span {
@@ -123,5 +168,172 @@ body    {
 }
 
 .title {
-    color: white;
+    color: black;
 }
+
+
+#main-body{
+    background-image: url(https://images.unsplash.com/photo-1554177255-61502b352de3);
+    /* background-image: url(/media/register.jpg) */
+    /* https://images.unsplash.com/photo-1554177255-61502b352de3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80 */
+}
+
+.login-form{
+    padding: 5px 5px 5px 25px;
+}
+
+.username-input, .password-input{
+    margin: 5px;
+}
+
+#id_body{
+    width: 400px;
+	height: 100px;
+    padding: 5px;
+    margin: 20px
+}
+
+.fa-search{
+    margin: 10px;
+}
+
+.profile-info{
+    color: black;
+    padding: 10px;
+}
+#news-container {
+    margin: 50px 50px 0 50px;
+}
+
+.news {
+    margin-left: 15vw;
+    margin-right: 15vh;
+}
+
+.news-time {
+    margin-bottom: 20px;
+
+}
+
+.article {
+    margin-bottom: 70px;
+    font-size: 20px;
+}
+
+.news-title {
+    font-size: 60px;
+    text-align: center;
+    text-align: center;
+}
+#news-container a {
+    color: white;
+    font-size: 20px;
+    text-align: center;
+}
+
+#news-container a:hover {
+color: cyan;
+}
+
+.news-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.inbox  *{
+    display: block;
+}
+
+.about {
+    color: white !important;
+    padding: 0px !important;
+}
+
+#message #id_message{
+    display: block;
+}
+
+#message #id_topic{
+    display: block;
+}
+
+.suggested {
+    margin-left: 10px;
+    margin-top: 5px;
+    height: 50px;
+    width: 50px;
+}
+
+.aboutus {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.about-title {
+    font-size: 60px;
+    text-align: center;
+}
+
+th, td {
+    padding: 10px;
+}
+
+th {
+    text-align: center !important;
+    color: white !important;
+}
+
+tr {
+    text-align:center;
+}
+
+.navbar-brand {
+  font-size:40x !important;
+}
+
+#reg-navbar {
+  margin: 30px !important;
+}
+
+#logo-icon {
+    font-size: 40px !important;
+    color: white !important;
+}
+
+#search-button {
+  background: transparent;
+  color: white;
+  border: 0px;
+  font-size: 30px;
+}
+
+.nav-icon {
+  font-size: 25px;
+}
+
+.footer {
+  padding: 0px !important;
+}
+
+#suggested-friend {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+#friend-card {
+  margin-bottom: 20px;
+}
+
+
+#edit-image {
+    text-align: center;
+}
+
+
+#edit-image #id_image {
+    color: white;
+    background-color: black;
+    opacity: .6;
+} 

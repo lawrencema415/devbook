@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
-from .models import Post, Comment, Like, Profile, Friend, Message
+from .models import Post, Comment, Like, Profile, Message
 from django.contrib.auth.decorators import login_required
 from .forms import PostForm, CommentForm, ProfileForm, LikeForm, MessageForm, UserProfileForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
+from django.db.models import Q
 
 # Create your views here.
+@login_required
 def homepage(request):
     posts = Post.objects.all().order_by('-time_posted')
     form = PostForm()
@@ -15,22 +17,13 @@ def homepage(request):
     user = request.user
     profile = Profile.objects.all()
     likes = Like.objects.all()
-    return render(request, 'homepage.html',{'form':form,'posts':posts,'commentForm':commentForm,'comments':comments, 'profile': profile, 'likes':likes,'likeForm':likeForm})
-
-def friends(request):
-    posts = Post.objects.all()
-    form = PostForm()
-    commentForm = CommentForm()
-    comments = Comment.objects.all()
-    users = User.objects.all()
-    user = request.user
-    profile = Profile.objects.all()
-    return render(request, 'homepage.html',{'form':form,'posts':posts,'commentForm':commentForm,'comments':comments, 'profile': profile, 'users':users})
+    suggested = Profile.objects.filter(~Q(id=request.user.pk))
+    return render(request, 'homepage.html',{'form':form,'posts':posts,'commentForm':commentForm,'comments':comments, 'profile': profile, 'likes':likes,'likeForm':likeForm,'suggested':suggested})
 
 @login_required
 def profile(request):
     user = request.user
-    posts = Post.objects.filter(user=user)
+    posts = Post.objects.filter(user=user).order_by('-time_posted')
     form = PostForm()
     commentForm = CommentForm()
     comments = Comment.objects.all()
@@ -177,6 +170,22 @@ def send_mail(request,pk):
             message.sender = user
             message.receiver = receiver
             message.save()
-            profile = Profile.objects.get(id=pk)
-            profile_form = ProfileForm()
-            return render(request, 'userprofile.html',{"profile":profile,"profile_form":profile_form })
+            user = User.objects.get(id=pk)
+            messages = Message.objects.filter(receiver=user)
+            return redirect('homepage')
+
+def reply_mail(request,pk):
+    messageForm = MessageForm()
+    profile = Profile.objects.filter(id=pk)
+    return render(request, 'send_mail.html',{"profile":profile,"messageForm":messageForm})
+
+def delete_mail(request,pk):
+    Message.objects.get(pk=pk).delete()
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+def news(request):
+    return render(request,'news.html')
+
+
+def about(request):
+    return render(request, 'about.html')

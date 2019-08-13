@@ -1,50 +1,63 @@
 {% extends 'base.html' %}
 {% block content %}
-<form class="" action="{% url 'post_body' %}" method="post" style="margin-top: 7%;text-align:center">
+<form class="post-body" action="{% url 'post_body' %}" method="post">
   {% csrf_token%}
   {{form.as_p}}
-  <button class="button" type="submit" name="button">Post</button>
+  <button class="post-button" type="submit" name="button">Post</button>
 </form>
 
 <div class="columns">
   <div class="column is-two-thirds">
     <h3>Posts</h3>
+    {% if posts.count == 0 %}
+    <h1>No post available.. </h1>
+    {% endif %}
     {% for post in posts%}
-
     <div class="card">
       <div class="card-content">
         <div class="media">
           <div class="media-left">
             {% if post.user == request.user %}
             <figure class="image is-64x64">
-              <a href="{% url 'user_prof' pk=post.user.pk %}"><img src="{{ user.profile.image.url }}" alt="Image" style="width:50px;height:50px"></a>
+              <a href="{% url 'user_prof' pk=post.user.pk %}"><img src="{{ user.profile.image.url }}" alt="Image"
+                  ></a>
             </figure>
             {% else %}
             <figure class="image is-64x64">
-              <a href="{% url 'user_prof' pk=post.user.profile.user.pk %}"><img src="{{post.user.profile.image.url}}" alt="Image" tyle="width:50px;height:50px"></a>
+              <a href="{% url 'user_prof' pk=post.user.profile.user.pk %}"><img src="{{post.user.profile.image.url}}"
+                  alt="Image" ></a>
             </figure>
             {% endif %}
           </div>
           <div class="media-content">
-            <p class="title is-4">{{post.user}}</p>
+
+            <p class="title is-4">{{post.user.first_name}} {{post.user.last_name}}</p>
             {% comment %} <p class="subtitle is-6">{{post.user}}</p> {% endcomment %}
+          </div>
+
+          <div class="level level-right">
+            <div class="level-item">
+              <div>
+                {% if post.user == request.user %}
+                <h4><a href="{% url 'post_edit' pk=post.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
+                {% endif %}
+              </div>
+            </div>
+            <div class="level-item">
+              <div>
+                {% if post.user == request.user %}
+                <h4><a href="{% url 'post_delete' pk=post.pk %}"><i class="fas fa-trash-alt"></i></a></h4>
+                {% endif %}
+              </div>
+            </div>
           </div>
         </div>
         <div class="content">
-          {% if post.user == request.user %}
-          <h4><a href="{% url 'post_edit' pk=post.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
-          <h4><a href="{% url 'post_delete' pk=post.pk %}"><i class="fas fa-trash-alt"></i></a></h4>
-          {% endif %}
-          <p class="text">
+          <p class="post-text">
             {{post.body}}
           </p>
           <nav class="level is-mobile">
             <div class="level-left">
-              <a class="level-item" aria-label="reply">
-                <span class="icon is-small">
-                  <i class="fas fa-reply" aria-hidden="true"></i>
-                </span>
-              </a>
               <a class="level-item" aria-label="like">
                 <span class="icon is-small">
                   <i class="fas fa-heart" aria-hidden="true"></i>
@@ -66,55 +79,77 @@
               <div class="media-left">
                 {% if comment.user == request.user %}
                 <figure class="image is-64x64">
-                  <a href="{% url 'user_prof' pk=post.user.pk %}"><img src="{{ user.profile.image.url }}" alt="Image" style="width:50px;height:50px"></a>
+                  <a href="{% url 'user_prof' pk=post.user.pk %}"><img src="{{ user.profile.image.url }}" alt="Image"></a>
                 </figure>
                 {% else %}
                 <figure class="image is-64x64">
-                  <a href="{% url 'user_prof' pk=post.user.profile.user.pk %}"><img src="{{post.user.profile.image.url}}" alt="Image" tyle="width:50px;height:50px"></a>
+                  <a href="{% url 'user_prof' pk=post.user.profile.user.pk %}"><img
+                      src="{{post.user.profile.image.url}}" alt="Image" tyle="width:50px;height:50px"></a>
                 </figure>
                 {% endif %}
               </div>
               <div class="media-content">
                 <div class="content">
-                  <p>
-                    <strong>{{comment.user}}</strong> <small>{{comment.time_posted}}</small>
-                    <br>
-                    {% if comment.user == request.user %}
-                    <h4><a href="{% url 'comment_edit' pk=comment.pk %}"><i class="fas fa-pencil-alt"></i></a></h4>
-                    <h4><a href="{% url 'delete_comment' pk=comment.pk %}"><i class="fas fa-trash-alt"></i></a></h4>
-                    {% endif %}
-                    {{comment.body}}
-                  </p>
+                  <div class="level">
+                    <div class="level-item level-left">
+                      <div>
+                        <strong> {{comment.user.first_name}} {{comment.user.last_name}}</strong>
+                      </div>
+                    </div>
+                    <div class="level-item level-center">
+                      <div>
+                        <small>{{comment.time_posted}}</small>
+                      </div>
+                    </div>
+                    <div class="level-right">
+                      <div class="level-item">
+                        <div>
+                          {% if comment.user == request.user %}
+                          <h4><a href="{% url 'comment_edit' pk=comment.pk %}"><i class="fas fa-pencil-alt"></i></a>
+                          </h4>
+                          {% endif %}
+                        </div>
+                      </div>
+                      <div class="level-item">
+                        <div>
+                          {% if comment.user == request.user %}
+                          <h4><a href="{% url 'delete_comment' pk=comment.pk %}"><i class="fas fa-trash-alt"></i></a>
+                          </h4>
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p>{{comment.body}} </p>
                 </div>
               </div>
             </article>
           </div>
           {% endif %}
           {% endfor %}
-
           <form class="" action="{% url 'post_comment' pk=post.pk %}" method="post">
             {% csrf_token%}
             {{commentForm.as_p}}
-            <button class="button" type="submit" name="button">Comment</button>
+            <button class="button comment-button" type="submit" name="button">Comment</button>
           </form>
         </div>
       </div>
     </div>
     {% endfor %}
   </div>
-
   <div class="column">
-    <h3>Friends</h3>
-
     <div class="columns">
-      <div class="column">Auto</div>
+      <div class="column"></div>
       <div class="column is-four-fifths">
-        <div class="card">
+        <h3 id="suggested-friend">Suggested Friends</h3>
+        {% for profile in suggested %}
+        <div class="card" id="friend-card">
           <div class="columns">
             <div class="column is-half">
               <div class="card-image">
                 <figure class="image is-96x96">
-                  <img src="{{ user.profile.image.url }}" alt="Image">
+                  <a href="{% url 'user_prof' pk=profile.pk %}"><img class="suggested" src="{{ profile.user.profile.image.url }}"
+                      alt="Image"></a>
                 </figure>
               </div>
             </div>
@@ -122,26 +157,19 @@
               <div class="card-content">
                 <div class="media">
                   <div class="media-content">
-                    <p class="title is-4">Best Friend 1</p>
-                    <p class="subtitle is-6">@bff1</p>
+                    <p class="title is-4"> {{profile.user.first_name}} {{profile.user.last_name}}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
-
-
+        {% endfor %}
       </div>
-      <div class="column">Auto</div>
+      <div class="column"></div>
     </div>
   </div>
 </div>
-
-
-
-
 
 
 

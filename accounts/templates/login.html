@@ -1,8 +1,5 @@
 {% extends 'base.html'%}
 {% block content %}
-    {% if error  %}
-        <p style="background-color: firebrick; color: white;">{{error}}</p>
-    {% endif %}
     <section class="form-section">
         <form action="{% url 'login' %}" method="POST" class="artist-form">
         {% csrf_token %}
