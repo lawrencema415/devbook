@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+
+{% if messages.count == 0 %}
+<h1>You have no mail</h1>
+
+{% endif %}
 {% for message in messages %}
 <h1>{{message.topic}}</h1>
 
