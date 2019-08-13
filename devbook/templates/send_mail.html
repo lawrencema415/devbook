@@ -5,7 +5,7 @@ New Message
 <div class="card inbox">
 <form class="card inbox" action="{% url 'send_mail' pk=profile.pk %}" method="post">
   {% csrf_token %}
-  Topic & Message {{messageForm}}
+  Receiver: {{profile.user}} {{messageForm}}
   <input class="card inbox" type="submit" name="send" placeholder="Send">
 </form>
 </div>
