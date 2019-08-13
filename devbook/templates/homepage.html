@@ -20,12 +20,12 @@
             {% if post.user == request.user %}
             <figure class="image is-64x64">
               <a href="{% url 'user_prof' pk=post.user.pk %}"><img src="{{ user.profile.image.url }}" alt="Image"
-                  style="width:50px;height:50px"></a>
+                  ></a>
             </figure>
             {% else %}
             <figure class="image is-64x64">
               <a href="{% url 'user_prof' pk=post.user.profile.user.pk %}"><img src="{{post.user.profile.image.url}}"
-                  alt="Image" tyle="width:50px;height:50px"></a>
+                  alt="Image" ></a>
             </figure>
             {% endif %}
           </div>
@@ -79,8 +79,7 @@
               <div class="media-left">
                 {% if comment.user == request.user %}
                 <figure class="image is-64x64">
-                  <a href="{% url 'user_prof' pk=post.user.pk %}"><img src="{{ user.profile.image.url }}" alt="Image"
-                      style="width:50px;height:50px"></a>
+                  <a href="{% url 'user_prof' pk=post.user.pk %}"><img src="{{ user.profile.image.url }}" alt="Image"></a>
                 </figure>
                 {% else %}
                 <figure class="image is-64x64">
@@ -142,9 +141,9 @@
     <div class="columns">
       <div class="column"></div>
       <div class="column is-four-fifths">
-        <h3 style="margin-bottom: 16px; text-align: center;">Suggested Friends</h3>
+        <h3 id="suggested-friend">Suggested Friends</h3>
         {% for profile in suggested %}
-        <div class="card" style="margin-bottom: 20px;">
+        <div class="card" id="friend-card">
           <div class="columns">
             <div class="column is-half">
               <div class="card-image">

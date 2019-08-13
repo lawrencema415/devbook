@@ -22,13 +22,13 @@
 	<nav class="navbar is-black">
 		<div class="navbar-brand">
 			<a class="navbar-item" href="http://localhost:8000/">
-			<i class="fab fa-connectdevelop animated infinite heartBeat slow" style="font-size: 40px;"></i>
+			<i class="fab fa-connectdevelop animated infinite heartBeat slow" id="logo-icon"></i>
 				<h1 class="brand">DevBook</h1>
 			</a>
 			<form class="navbar-item" action="{% url 'search' %}" method="post">
 				{% csrf_token %}
 				<input type="text" name="name" value="" placeholder="Search by name">
-				<button style="background: transparent; color: white; border: 0px; font-size: 30px;" type="submit" name=""><i class="fas fa-search"></i></button>
+				<button id="search-button" type="submit" name=""><i class="fas fa-search"></i></button>
 			</form>
 			<div class="navbar-burger burger is-active" data-target="navMenuColorlink-example">
 				<span>one</span>
@@ -46,15 +46,15 @@
 			</div>
 			<a title="profile" class="navbar-item" href="{% url 'profile' %}">{{user}}</a>
 			{% if user.is_authenticated %}
-			<a class="navbar-item" href="{% url 'homepage' %}"><i class="fas fa-home" style="font-size: 25px;" title="Home"></i></a>
-			<a class="navbar-item" href="{% url 'inbox' pk=request.user.pk %}"><i class="fas fa-envelope" style="font-size: 25px;" title="Inbox"></i></a>
-			<a class="navbar-item" href="{% url 'news' %}"><i class="far fa-newspaper" style="font-size: 25px;" title="News"></i></a>
-				<a class="navbar-item" href="{% url 'donation' %}"><i class="fas fa-hand-holding-usd" style="font-size: 25px;" title="Donate to DevBook"></i></a>
+			<a class="navbar-item" href="{% url 'homepage' %}"><i class="fas fa-home nav-icon" title="Home"></i></a>
+			<a class="navbar-item" href="{% url 'inbox' pk=request.user.pk %}"><i class="fas fa-envelope nav-icon" title="Inbox"></i></a>
+			<a class="navbar-item" href="{% url 'news' %}"><i class="far fa-newspaper nav-icon" title="News"></i></a>
+				<a class="navbar-item" href="{% url 'donation' %}"><i class="fas fa-hand-holding-usd nav-icon" title="Donate to DevBook"></i></a>
 				<a class="navbar-item" href="{% url 'logout'%}">Log Out</a>
 				{% else %}
 				<a class="navbar-item" href="{% url 'register'%}">Register</a>
 				<a class="navbar-item" href="{% url 'login'%}">Log In</a>
-				<a class="navbar-item" href="{% url 'news' %}"><i class="far fa-newspaper" style="font-size: 25px;" title="News"></i></a>
+				<a class="navbar-item" href="{% url 'news' %}"><i class="far fa-newspaper nav-icon" title="News"></i></a>
 
 				{% endif %}
 
@@ -70,7 +70,7 @@
 
 	{% block content%}
 	{% endblock %}
-	<div class="footer" style="padding: 0px;">
+	<div class="footer">
 			<div class="content has-text-centered">
 		<section class="hero is-small is-black is-bold">
 			<div class="hero-body">
@@ -81,7 +81,7 @@
 					<h2 class="about">
 							<a class="about" href="https://github.com/lawrencema415">Lawrence Ma</a> | <a class="about" href="https://github.com/ChristianJVilla">Christian Villa</a> | <a class="about" href="https://github.com/ale-xander">Alex Iliev</a>
 					</h2>
-					<h4 class="about"> 
+					<h4 class="about">
 						<a class="about" href="{% url 'about' %}">About Us</a>
 					</h4>
 				</div>

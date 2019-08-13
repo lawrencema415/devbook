@@ -49,7 +49,7 @@ body    {
 
 .is-4{
     color: #002b36;
-    
+
 }
 
 .post-text {
@@ -286,4 +286,40 @@ th {
 
 tr {
     text-align:center;
+}
+
+.navbar-brand {
+  font-size:40x !important;
+}
+
+#reg-navbar {
+  margin: 30px !important;
+}
+
+#logo-icon {
+  font-size: 40px;
+}
+
+#search-button {
+  background: transparent;
+  color: white;
+  border: 0px;
+  font-size: 30px;
+}
+
+.nav-icon {
+  font-size: 25px;
+}
+
+footer {
+  padding: 0px;
+}
+
+#suggested-friend {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+#friend-card {
+  margin-bottom: 20px;
 }
