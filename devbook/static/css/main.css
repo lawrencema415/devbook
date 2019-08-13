@@ -236,3 +236,8 @@ color: cyan;
     margin-left: auto;
     margin-right: auto;
 }
+
+.card .inbox {
+    display: block;
+    text-align: center;
+}
