@@ -11,7 +11,7 @@ User profile page
     </figure>
     <div>
       {% if user.pk != profile.user.pk  %}
-      <a href="{% url 'mail' pk=profile.pk %}">Message user</a>
+      <h4><a href="{% url 'mail' pk=profile.pk %}">message {{profile.user}}</a></h4>
       {% endif %}
       <div class="profile-body">
         {% if user.pk == profile.user.pk %}
@@ -24,6 +24,9 @@ User profile page
           <h1>Phone number: {{profile.phone}}</h1>
         </div>
         <hr>
+      </div>
+    </div>
+  </div>
+</div>
 
-
-        {% endblock %}
+{% endblock %}

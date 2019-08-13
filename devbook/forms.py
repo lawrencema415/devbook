@@ -33,6 +33,8 @@ class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
         fields = ('topic','message')
+        # widgets = forms.Textarea(attrib)
+        
 
 
 class UserProfileForm(forms.ModelForm):

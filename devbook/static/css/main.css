@@ -4,9 +4,10 @@
 	font-size: 100%;
 }
 
-html {
+.register {
     height: 100%;
 }
+
 body    {
     font-family: 'Roboto', sans-serif;
     background: #073642;
@@ -14,6 +15,7 @@ body    {
     background-size: cover;
     background-repeat: no-repeat;
     height: 100%;
+
 }
 .post-body{
     margin: 5% 0 0 25%;
@@ -177,9 +179,11 @@ body    {
 .login-form{
     padding: 5px 5px 5px 25px;
 }
+
 .username-input, .password-input{
     margin: 5px;
 }
+
 #id_body{
     width: 400px;
 	height: 100px;
@@ -190,9 +194,11 @@ body    {
 .fa-search{
     margin: 10px;
 }
+
 .profile-info{
     color: black;
     padding: 10px;
+}
 #news-container {
     margin: 50px 50px 0 50px;
 }
@@ -239,17 +245,19 @@ color: cyan;
 }
 #user-profile-page {
     color: #268ad2;
-    font-size: 2em;
+    padding: 10px;
 }
 
-.title{
-    color: pink !important;
-    bottom: 0;
-  left: 0;
-  position: fixed;
-  right: 0;
-  z-index: 30;
+.about {
+    color: white;
 }
-.hero-body{
-    
+
+.inbox-delete{
+    font-size: 1.1em;
+    color: #268ad2;
+    margin: 5px;
+}
+.inbox-message{
+    font-size: 1.1em;
+    color: #268ad2;
 }
