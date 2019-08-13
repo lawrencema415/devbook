@@ -28,7 +28,7 @@
           </div>
           <div class="media-content">
 
-            <p class="title is-4">{{post.user}}</p>
+            <p class="title is-4">{{post.user.first_name}} {{post.user.last_name}}</p>
             {% comment %} <p class="subtitle is-6">{{post.user}}</p> {% endcomment %}
           </div>
 
@@ -91,7 +91,7 @@
                   <div class="level">
                     <div class="level-item level-left">
                       <div>
-                        <strong>{{comment.user}}</strong>
+                        <strong> {{comment.user.first_name}} {{comment.user.last_name}}</strong>
                       </div>
                     </div>
                     <div class="level-item level-center">
@@ -139,15 +139,15 @@
     <div class="columns">
       <div class="column"></div>
       <div class="column is-four-fifths">
-        <h3 style="margin-bottom: 12px; text-align: center;">Suggested Friends</h3>
+        <h3 style="margin-bottom: 16px; text-align: center;">Suggested Friends</h3>
         {% for profile in profile %}
         <div class="card" style="margin-bottom: 20px;">
           <div class="columns">
             <div class="column is-half">
               <div class="card-image">
                 <figure class="image is-96x96">
-                  <a href="{% url 'user_prof' pk=profile.pk %}"><img src="{{ profile.user.profile.image.url }}"
-                      alt="Image" style="width:100px;height:100px"></a>
+                  <a href="{% url 'user_prof' pk=profile.pk %}"><img class="suggested" src="{{ profile.user.profile.image.url }}"
+                      alt="Image"></a>
                 </figure>
               </div>
             </div>
@@ -155,7 +155,7 @@
               <div class="card-content">
                 <div class="media">
                   <div class="media-content">
-                    <p class="title is-4"> {{profile.user.username}} </p>
+                    <p class="title is-4"> {{profile.user.first_name}} {{profile.user.last_name}}</p>
                   </div>
                 </div>
               </div>
