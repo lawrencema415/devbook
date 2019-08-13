@@ -4,15 +4,17 @@
 	font-size: 100%;
 }
 
-html {
+.register {
     height: 100%;
 }
+
 body    {
     font-family: 'Roboto', sans-serif;
     background: #073642;
     color: white;
     background-size: cover;
     background-repeat: no-repeat;
+    height: 100%;
 
 }
 .post-body{
@@ -168,9 +170,6 @@ body    {
     color: black;
 }
 
-body {
-    height: 100%;
-}
 
 #main-body{
     background-image: url(https://images.unsplash.com/photo-1554177255-61502b352de3);
@@ -181,9 +180,11 @@ body {
 .login-form{
     padding: 5px 5px 5px 25px;
 }
+
 .username-input, .password-input{
     margin: 5px;
 }
+
 #id_body{
     width: 400px;
 	height: 100px;
@@ -194,9 +195,11 @@ body {
 .fa-search{
     margin: 10px;
 }
+
 .profile-info{
     color: black;
     padding: 10px;
+}
 #news-container {
     margin: 50px 50px 0 50px;
 }
@@ -240,4 +243,8 @@ color: cyan;
 .card .inbox {
     display: block;
     text-align: center;
+}
+
+.about {
+    color: pink !important;
 }
