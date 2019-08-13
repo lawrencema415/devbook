@@ -8,6 +8,7 @@
       <a href="{% url 'user_prof' pk=profile.pk %}"><img src="{{ profile.user.profile.image.url }}" alt="Image" style="width:50px;height:50px"></a>
     </figure>
   <div class="profile-body">
+    <a href="{% url 'friend_request' pk=profile.pk %}">Add as friend</a>
   <h1>Name: {{profile.user.first_name}} {{profile.user.last_name}}</h1>
   <h1>Location: {{profile.user.location}}</h1>
 </div>

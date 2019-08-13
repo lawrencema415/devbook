@@ -188,3 +188,6 @@ def delete_mail(request,pk):
 
 def news(request):
     return render(request,'news.html')
+
+def friend_request(request,pk):
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

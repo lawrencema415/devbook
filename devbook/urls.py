@@ -23,6 +23,8 @@ urlpatterns = [
     path('inbox/<int:pk>/send',views.send_mail,name='send_mail'),
     path('inbox/<int:pk>/delete',views.delete_mail,name='delete_mail'),
     path('news',views.news,name='news')
+    path('news',views.news,name='news'),
+    path('friend_request/<int:pk>/add',views.friend_request,name='friend_request')
 ]
 
 if settings.DEBUG:
