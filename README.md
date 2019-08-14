@@ -86,14 +86,11 @@ As a user, I want to be able to make posts. These posts can be just plain text o
 #### Commenting:
 As a user, I want to comment and like posts.
 1.	I can enter unlimited comments on posts
-2.	I can like a post multiple times
+2.	I can like a post once only
 
 #### Profile page:
 As a user, I want to be able to see my info and edit it.
 1.	All fields entered on the sign-up page are displayed on the profile page and I can edit them if I want to
-
-#### Adding users:
-Only an admin can add users.
 
 #### Milestones
 1.	Set up repo on GitHub
