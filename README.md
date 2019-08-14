@@ -4,7 +4,7 @@ DevBook is a Social media platform that allows you to interact with other develo
 
 
 
-[DevBook on Heroku](https://------.herokuapp.com)
+[DevBook on Heroku](https://devbookdevs.herokuapp.com/aboutus/)
 
 ## Technologies Used
 
